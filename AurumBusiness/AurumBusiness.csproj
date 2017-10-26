@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{047E5154-A7FD-4194-9C06-B98CDE59FCAF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AurumBusiness</RootNamespace>
+    <AssemblyName>AurumBusiness</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0-beta1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0-beta1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.JRO">
+      <HintPath>D:\CorintoR200818112011\CorintoR2008\Corinto\bin\Debug\Interop.JRO.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BAL\AperturaBAL.cs" />
+    <Compile Include="BAL\BancosBAL.cs" />
+    <Compile Include="BAL\CategoriaBAL.cs" />
+    <Compile Include="BAL\CierreBAL.cs" />
+    <Compile Include="BAL\ClienteBAL.cs" />
+    <Compile Include="BAL\CuentasxCobrarBAL.cs" />
+    <Compile Include="BAL\DetalleFacturaBAL.cs" />
+    <Compile Include="BAL\FacturasBAL.cs" />
+    <Compile Include="BAL\itemsOrderBAL.cs" />
+    <Compile Include="BAL\MenuBAL.cs" />
+    <Compile Include="BAL\MesasBAL.cs" />
+    <Compile Include="BAL\MesoneroBAL.cs" />
+    <Compile Include="BAL\PagoBAL.cs" />
+    <Compile Include="BAL\ProductoBAL.cs" />
+    <Compile Include="BAL\TarjetaBAL.cs" />
+    <Compile Include="BAL\UsuarioBAL.cs" />
+    <Compile Include="Controllers\DepositosManager.cs" />
+    <Compile Include="Controllers\DetalleMesaFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controllers\DetalleMesaFrm.Designer.cs">
+      <DependentUpon>DetalleMesaFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\MesasManager.cs" />
+    <Compile Include="BAL\ParametrosBAL.cs" />
+    <Compile Include="Controllers\itemsOrderManager.cs" />
+    <Compile Include="Controllers\MenuManager.cs" />
+    <Compile Include="Controllers\MesonerosManager.cs" />
+    <Compile Include="Controllers\PagoManager.cs" />
+    <Compile Include="Controllers\ParametrosManager.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="Controllers\AperturasManager.cs" />
+    <Compile Include="BAL\AreaBAL.cs" />
+    <Compile Include="Controllers\AreaManager.cs" />
+    <Compile Include="Controllers\BancosManager.cs" />
+    <Compile Include="Controllers\CategoriasManager.cs" />
+    <Compile Include="Controllers\CierresManager.cs" />
+    <Compile Include="Controllers\ClienteManager.cs" />
+    <Compile Include="Controllers\CuentasxCobrarManager.cs" />
+    <Compile Include="Controllers\DetalleFacturaManager.cs" />
+    <Compile Include="Controllers\FacturasManager.cs" />
+    <Compile Include="Controllers\ProductosManager.cs" />
+    <Compile Include="Controllers\remotasManager.cs" />
+    <Compile Include="Controllers\TarjetasManager.cs" />
+    <Compile Include="Controllers\TicketManager.cs" />
+    <Compile Include="Controllers\TicketDetalleManager.cs" />
+    <Compile Include="Controllers\TicketDTO.cs" />
+    <Compile Include="Controllers\TurnoManager.cs" />
+    <Compile Include="Controllers\UsuariosManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AurumDataEntity\AurumDataEntity.csproj">
+      <Project>{842592B4-64B9-46E0-917A-5E5E5FACC85A}</Project>
+      <Name>AurumDataEntity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AurumData\AurumData.csproj">
+      <Project>{e7e17694-2f1b-4ff6-b70e-83405186e631}</Project>
+      <Name>AurumData</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controllers\DetalleMesaFrm.resx">
+      <DependentUpon>DetalleMesaFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\borrar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\enmesa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\total.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

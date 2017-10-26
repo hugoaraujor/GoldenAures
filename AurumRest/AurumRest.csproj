@@ -1,0 +1,565 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0C043A53-0959-457C-9063-551A155ECF66}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>AurumRest</RootNamespace>
+    <AssemblyName>AurumRest</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>AurumRest.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'x86|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'x86|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\x86\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AxInterop.BemaFiscalWeb">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Corporación Experta IT Services\Corinto 1.0. Punto de Venta\AxInterop.BemaFiscalWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0-beta1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0-beta1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.ADODB">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Corporación Experta IT Services\Corinto 1.0. Punto de Venta\Interop.ADODB.DLL</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Interop.BemaFiscalWeb">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Corporación Experta IT Services\Corinto 1.0. Punto de Venta\Interop.BemaFiscalWeb.DLL</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Interop.JRO">
+      <HintPath>D:\CorintoR200818112011\CorintoR2008\Corinto\bin\Debug\Interop.JRO.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Interop.Scripting">
+      <HintPath>F:\SONEVIEW backup\Documents\Desarrollos\PuntodeVenta\Corinto Punto de Venta\obj\x86\Debug\Interop.Scripting.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutBox1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutBox1.designer.cs">
+      <DependentUpon>AboutBox1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbrirMesaFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbrirMesaFrm.Designer.cs">
+      <DependentUpon>AbrirMesaFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AreasForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AreasForm.Designer.cs">
+      <DependentUpon>AreasForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AreasLista.cs" />
+    <Compile Include="ClasePago.cs" />
+    <Compile Include="Consecutivos.cs" />
+    <Compile Include="DetalleMesaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DetalleMesaForm.Designer.cs">
+      <DependentUpon>DetalleMesaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FacturaDoc.cs" />
+    <Compile Include="FontType.cs" />
+    <Compile Include="IniFile.cs" />
+    <Compile Include="MontoPago.cs" />
+    <Compile Include="FiscalPrinterBematech.cs" />
+    <Compile Include="IPrinterFi.cs" />
+    <Compile Include="UI\PagoCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\PagoCtrl.Designer.cs">
+      <DependentUpon>PagoCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TotalapagarView.cs" />
+    <Compile Include="UI\Botonera.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Botonera.Designer.cs">
+      <DependentUpon>Botonera.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BusquedaFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BusquedaFrm.Designer.cs">
+      <DependentUpon>BusquedaFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CategoriasForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CategoriasForm.Designer.cs">
+      <DependentUpon>CategoriasForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClienteFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClienteFrm.Designer.cs">
+      <DependentUpon>ClienteFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\comandBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\comandBar.Designer.cs">
+      <DependentUpon>comandBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Default.cs" />
+    <Compile Include="UI\DiagramaMesas.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DiagramaMesas.Designer.cs">
+      <DependentUpon>DiagramaMesas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ErrorBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\ErrorBar.Designer.cs">
+      <DependentUpon>ErrorBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormView.Designer.cs">
+      <DependentUpon>FormView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ILista.cs" />
+    <Compile Include="Lista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lista.Designer.cs">
+      <DependentUpon>Lista.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Catalogo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Catalogo.Designer.cs">
+      <DependentUpon>Catalogo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginFrm.Designer.cs">
+      <DependentUpon>LoginFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainFrm.Designer.cs">
+      <DependentUpon>MainFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesaControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MesaControl.Designer.cs">
+      <DependentUpon>MesaControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OneValueFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OneValueFrm.Designer.cs">
+      <DependentUpon>OneValueFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PartsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PartsForm.Designer.cs">
+      <DependentUpon>PartsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Punto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Punto.Designer.cs">
+      <DependentUpon>Punto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RemotasForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RemotasForm.Designer.cs">
+      <DependentUpon>RemotasForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Session.cs" />
+    <Compile Include="UI\MoveFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\MoveFrm.Designer.cs">
+      <DependentUpon>MoveFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\TextoBoxp.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\TextoBoxp.Designer.cs">
+      <DependentUpon>TextoBoxp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TotalForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TotalForm.Designer.cs">
+      <DependentUpon>TotalForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities.cs" />
+    <Compile Include="Varios.cs" />
+    <Compile Include="Views\AbrirMesaClass.cs" />
+    <Compile Include="Worker.cs" />
+    <EmbeddedResource Include="AboutBox1.resx">
+      <DependentUpon>AboutBox1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbrirMesaFrm.resx">
+      <DependentUpon>AbrirMesaFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AreasForm.resx">
+      <DependentUpon>AreasForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetalleMesaForm.resx">
+      <DependentUpon>DetalleMesaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\PagoCtrl.resx">
+      <DependentUpon>PagoCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Botonera.resx">
+      <DependentUpon>Botonera.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BusquedaFrm.resx">
+      <DependentUpon>BusquedaFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CategoriasForm.resx">
+      <DependentUpon>CategoriasForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClienteFrm.resx">
+      <DependentUpon>ClienteFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\comandBar.resx">
+      <DependentUpon>comandBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DiagramaMesas.resx">
+      <DependentUpon>DiagramaMesas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ErrorBar.resx">
+      <DependentUpon>ErrorBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormView.resx">
+      <DependentUpon>FormView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lista.resx">
+      <DependentUpon>Lista.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Catalogo.resx">
+      <DependentUpon>Catalogo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginFrm.resx">
+      <DependentUpon>LoginFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainFRm.resx">
+      <DependentUpon>MainFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesaControl.resx">
+      <DependentUpon>MesaControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OneValueFrm.resx">
+      <DependentUpon>OneValueFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartsForm.resx">
+      <DependentUpon>PartsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Punto.resx">
+      <DependentUpon>Punto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RemotasForm.resx">
+      <DependentUpon>RemotasForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\MoveFrm.resx">
+      <DependentUpon>MoveFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TotalForm.resx">
+      <DependentUpon>TotalForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\toolStripButton4.Image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\toolStripButton5.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AurumBusiness\AurumBusiness.csproj">
+      <Project>{047e5154-a7fd-4194-9c06-b98cde59fcaf}</Project>
+      <Name>AurumBusiness</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AurumDataEntity\AurumDataEntity.csproj">
+      <Project>{842592b4-64b9-46e0-917a-5e5e5facc85a}</Project>
+      <Name>AurumDataEntity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AurumData\AurumData.csproj">
+      <Project>{E7E17694-2F1B-4FF6-B70E-83405186E631}</Project>
+      <Name>AurumData</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AgregarBtn.Image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BorrarBtn.Image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EditarBtn.Image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Deshacer.Image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GuardarBtn.Image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LupaBtn.Image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete_1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\DataSources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\borrar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\total.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\enmesa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\borrar1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mas1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menos1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\enmesa1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\total1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\total2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\enmesa2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mesar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mesa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mesar1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mesav.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mesa1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fondo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mesag.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mesag1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mesa2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mesav1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mesa3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mesav2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo2.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walpaper.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walpaper1.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mesav3.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
