@@ -281,7 +281,7 @@ namespace AurumRest
 				//Doble Abstract Factory Printer y Documento
 				IPrinterFIOperaciones IP = new ImpresionBematech();
 				IP.Facturar(ListaDetalle, TF.TotalesPago);
-				MessageBox.Show(IP.isAnulada().ToString());
+				//MessageBox.Show(IP.isAnulada().ToString());
 
 			}
 
