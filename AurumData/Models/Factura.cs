@@ -24,45 +24,56 @@ namespace AurumData
 		private Decimal iva;
 		[DataType(DataType.Currency)]
 		private Decimal total;
+		[DataType(DataType.Currency)]
+		private Decimal exento;
 		[StringLength(15)]
 		private string caja;
 		[StringLength(10)]
 		private string mesa;
 		private int sirve;
-		private int usuario;
+		private int clienteID;
 		private int  userid;
 		[DataType(DataType.Currency)]
 		private Decimal descuento;
 		private Decimal tasa;
-		private int descuentoTasa;
 		[StringLength(20)]
 		private string equipo;
 		[StringLength(15)]
 		private string serial;
 		[StringLength(5)]
 		private string moneda;
-
+		private bool anulada;
+		[DataType(DataType.DateTime)]
+		private DateTime fecha;
 		public Factura()
 		{
 			
 		}
-
+		[StringLength(10)]
 		public string Facturanro { get => facturanro; set => facturanro = value; }
 		public int Id { get => id; set => id = value; }
+		[StringLength(160)]
 		public string Nota { get => nota; set => nota = value; }
 		public decimal Montoneto { get => montoneto; set => montoneto = value; }
 		public decimal Iva { get => iva; set => iva = value; }
 		public decimal Total { get => total; set => total = value; }
+		[StringLength(12)]
 		public string Caja { get => caja; set => caja = value; }
+		[StringLength(10)]
 		public string Mesa { get => mesa; set => mesa = value; }
 		public int Sirve { get => sirve; set => sirve = value; }
-		public int Usuario { get => usuario; set => usuario = value; }
+		public int ClienteID { get => clienteID; set => clienteID = value; }
 		public int Userid { get => userid; set => userid = value; }
 		public decimal Descuento { get => descuento; set => descuento = value; }
 		public decimal Tasa { get => tasa; set => tasa = value; }
-		public int DescuentoTasa { get => descuentoTasa; set => descuentoTasa = value; }
+		[StringLength(15)]
 		public string Equipo { get => equipo; set => equipo = value; }
+		[StringLength(15)]
 		public string Serial { get => serial; set => serial = value; }
+		[StringLength(5)]
 		public string Moneda { get => moneda; set => moneda = value; }
+		public bool Anulada { get => anulada; set => anulada = value; }
+		public decimal Exento { get => exento; set => exento = value; }
+		public DateTime Fecha { get => fecha; set => fecha = value; }
 	}
 }

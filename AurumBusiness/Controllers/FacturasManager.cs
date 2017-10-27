@@ -22,7 +22,6 @@ namespace AurumBusiness.Controllers
 				{
 
 				Caja = x.Caja,
-				DescuentoTasa = x.DescuentoTasa,
 				Descuento = x.Descuento,
 				Equipo = x.Equipo,
 				Facturanro = x.Facturanro,
@@ -35,7 +34,7 @@ namespace AurumBusiness.Controllers
 				Tasa = x.Tasa,
 				Total = x.Total,
 				Userid = x.Userid,
-				Usuario = x.Usuario,
+				//ClienteID = x.Cliente,
 				Moneda=x.Moneda
 
 
@@ -99,7 +98,7 @@ namespace AurumBusiness.Controllers
 					if (pac != null)
 					{
 						pac.Caja = x.Caja;
-						pac.DescuentoTasa=x.DescuentoTasa;
+			
 						pac.Descuento=x.Descuento;
 						pac.Equipo = x.Equipo;
 						pac.Facturanro = x.Facturanro;
@@ -112,7 +111,7 @@ namespace AurumBusiness.Controllers
 						pac.Tasa = x.Tasa;
 						pac.Total = x.Total;
 						pac.Userid = x.Userid;
-						pac.Usuario = x.Usuario;
+						pac.ClienteID = x.ClienteID;
 						pac.Moneda = x.Moneda;
 
 						db.SaveChanges();

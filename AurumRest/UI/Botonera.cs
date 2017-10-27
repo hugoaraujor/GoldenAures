@@ -271,9 +271,31 @@ namespace AurumRest
 			TF.ShowDialog();
 			MesasManager mesasM = new MesasManager();
 			var mesa=mesasM.GetMesa( CurrentMesa);
-			ImprimeFacturaBematech IB = new ImprimeFacturaBematech(mesa,ListaDetalle,TF.TotalesPago);
-			IB.Facturar();
+			if (TF.TotalesPago.pagado < TF.TotalesPago.resta)
+			{
+				ResetFormValues(TF);
+			}
+			else
+			 {   // cambiar el printer antes de llamar operacion para trabajar con otro printer ppoe ejemplo
+				 ///	IPrinterFIOperaciones IP = new ImpresionBixolon();
+				//Doble Abstract Factory Printer y Documento
+				IPrinterFIOperaciones IP = new ImpresionBematech();
+				IP.Facturar(ListaDetalle, TF.TotalesPago);
+				MessageBox.Show(IP.isAnulada().ToString());
 
+			}
+
+		}
+
+		private void ResetFormValues(TotalForm TF)
+		{
+			TF.TotalesPago.pagado = 0;
+			TF.TotalesPago.resta = 0;
+			TF.TotalesPago.descuento = 0;
+			TF.TotalesPago.ListaPagos.Clear();
+			TF.TotalesPago.cliente = null;
+			TF.TotalesPago.currentIva = Ivatipo.General;
+			TF.TotalesPago.IvaPercent = 0;
 		}
 
 		private void button9_Click(object sender, EventArgs e)
@@ -305,6 +327,23 @@ namespace AurumRest
 
 		}
 
+		private void ImprimirNota(Form tform)
+		{
 		
+		}
+
+		private void button10_Click_1(object sender, EventArgs e)
+		{
+			Form p=(this.ParentForm as Form);
+			Console.Write(p.Name);
+			((Punto)p).ChoiceClick(sender,e);
+			IPrinterFIOperaciones IP = new ImpresionBematech();
+			IP.EmiteNotadeCredito("000001");
+
+		}
+		private void  ParentMethods(object p)
+		{
+
+		}
 	}
 }

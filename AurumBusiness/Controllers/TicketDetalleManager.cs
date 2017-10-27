@@ -13,6 +13,25 @@ namespace AurumBusiness.Controllers
 {
 	public class TicketDetalleManager
 	{
+		public List<TicketDetalle> GetList(string factura)
+		{
+
+			List<TicketDetalle> query = new List<TicketDetalle>();
+			List<DetalleFactura> detallesF= new List<DetalleFactura>();
+			ProductoManager productoMngr = new ProductoManager();
+			using (var db = new Data())
+				{
+					detallesF = (from x in db.DetalleFactura where x.Factura== factura select x).ToList();
+
+				}
+			foreach (DetalleFactura d in detallesF)
+			{
+				var prod=productoMngr.GetProductoDTO(d.Codigoproducto);
+				query.Add(new TicketDetalle { Codigoproducto = d.Codigoproducto, Cant = d.Cant, Nombre = prod.Nombre, Neto = d.Monto, Iva = d.Iva, Montoiva = d.Monto * d.Iva, Mesa = d.Mesa, Factura = d.Factura });
+			}
+
+			return query;
+		}
 		public List<TicketDetalle> GetList(string mesastr="0",int ticket=0,bool zero=false)
 		{
 			

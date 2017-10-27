@@ -9,6 +9,6 @@ namespace AurumDataEntity
 		public decimal Iva { get; set; }
 		public decimal Cant { get; set; }
 		public string Factura { get; set; }
-		public decimal Nota { get; set; }
+		public string  Nota { get; set; }
 	}
 }

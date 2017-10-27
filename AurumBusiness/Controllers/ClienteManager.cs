@@ -169,7 +169,33 @@ namespace AurumBusiness.Controllers
 			return cliente;
 
 		}
+		public Cliente GetCliente(string factura)
+		{
+			Cliente cliente = new Cliente() { Credito = false, Debito = false, Direccion = "", Idcliente = -1, Identificacion = "V-            ", Nombre = "", Telefono = "" };
 
+
+			using (var db = new Data())
+			{
+				  Factura query= (from x in db.Facturas where x.Facturanro == factura select x).FirstOrDefault();
+			
+				Cliente queryCustomer = (from x in db.Clientes where x.Idcliente == query.ClienteID select x).FirstOrDefault();
+				
+				cliente = new Cliente
+					{
+	 					Direccion = queryCustomer.Direccion,
+						Nombre = queryCustomer.Nombre,
+						Identificacion = queryCustomer.Identificacion,
+				 Telefono= queryCustomer.Telefono
+				};
+				return cliente;
+
+			};
+
+
+
+
+
+		}
 
 
 		#region Edit

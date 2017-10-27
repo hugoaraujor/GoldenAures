@@ -16,7 +16,9 @@ namespace AurumData
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		private int id;
 		private int idproducto;
+		[StringLength(10)]
 		private string codigoproducto;
+		[StringLength(29)]
 		private string nombre;
 		private Decimal cant;
 		private Decimal neto;

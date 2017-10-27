@@ -1,6 +1,7 @@
-﻿using System.Runtime.InteropServices;
+﻿
+using System.Runtime.InteropServices;
 
-namespace FiscalPrinterBematech
+namespace AurumRest
 {
 	/// <summary>   
 	/// Classe con la declaración de las funciones del Bemafi32.dll   

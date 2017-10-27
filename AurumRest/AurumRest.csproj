@@ -35,10 +35,13 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -72,6 +75,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
+    <WarningLevel>0</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -97,6 +101,9 @@
     <Reference Include="AxInterop.BemaFiscalWeb">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Corporación Experta IT Services\Corinto 1.0. Punto de Venta\AxInterop.BemaFiscalWeb.dll</HintPath>
     </Reference>
+    <Reference Include="BemaFiscal">
+      <HintPath>D:\ExemploVBDotNET\BemaFiscal.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0-beta1\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -119,9 +126,11 @@
       <HintPath>F:\SONEVIEW backup\Documents\Desarrollos\PuntodeVenta\Corinto Punto de Venta\obj\x86\Debug\Interop.Scripting.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic.Compatibility" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -133,68 +142,79 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AboutBox1.cs">
+    <Compile Include="Forms\AboutBox1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AboutBox1.designer.cs">
+    <Compile Include="Forms\AboutBox1.designer.cs">
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbrirMesaFrm.cs">
+    <Compile Include="Forms\AbrirMesaFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbrirMesaFrm.Designer.cs">
+    <Compile Include="Forms\AbrirMesaFrm.Designer.cs">
       <DependentUpon>AbrirMesaFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AreasForm.cs">
+    <Compile Include="Forms\AreasForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AreasForm.Designer.cs">
+    <Compile Include="Forms\AreasForm.Designer.cs">
       <DependentUpon>AreasForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AreasLista.cs" />
-    <Compile Include="ClasePago.cs" />
+    <Compile Include="Bixolon.cs" />
+    <Compile Include="Views\ClasePago.cs" />
     <Compile Include="Consecutivos.cs" />
-    <Compile Include="DetalleMesaForm.cs">
+    <Compile Include="Forms\DescuentoDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DetalleMesaForm.Designer.cs">
+    <Compile Include="Forms\DescuentoDialog.Designer.cs">
+      <DependentUpon>DescuentoDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DetalleMesaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DetalleMesaForm.Designer.cs">
       <DependentUpon>DetalleMesaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Factura.cs" />
     <Compile Include="FacturaDoc.cs" />
-    <Compile Include="FontType.cs" />
+    <Compile Include="Views\FontType.cs" />
+    <Compile Include="Interfaces\IFactura.cs" />
+    <Compile Include="FacturaBematech.cs" />
     <Compile Include="IniFile.cs" />
-    <Compile Include="MontoPago.cs" />
+    <Compile Include="ImpresionBematech.cs" />
+    <Compile Include="Views\MontoPago.cs" />
     <Compile Include="FiscalPrinterBematech.cs" />
-    <Compile Include="IPrinterFi.cs" />
+    <Compile Include="Interfaces\IPrinterFi.cs" />
     <Compile Include="UI\PagoCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UI\PagoCtrl.Designer.cs">
       <DependentUpon>PagoCtrl.cs</DependentUpon>
     </Compile>
-    <Compile Include="TotalapagarView.cs" />
+    <Compile Include="Views\TotalapagarView.cs" />
     <Compile Include="UI\Botonera.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UI\Botonera.Designer.cs">
       <DependentUpon>Botonera.cs</DependentUpon>
     </Compile>
-    <Compile Include="BusquedaFrm.cs">
+    <Compile Include="Forms\BusquedaFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BusquedaFrm.Designer.cs">
+    <Compile Include="Forms\BusquedaFrm.Designer.cs">
       <DependentUpon>BusquedaFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CategoriasForm.cs">
+    <Compile Include="Forms\CategoriasForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CategoriasForm.Designer.cs">
+    <Compile Include="Forms\CategoriasForm.Designer.cs">
       <DependentUpon>CategoriasForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ClienteFrm.cs">
+    <Compile Include="Forms\ClienteFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ClienteFrm.Designer.cs">
+    <Compile Include="Forms\ClienteFrm.Designer.cs">
       <DependentUpon>ClienteFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\comandBar.cs">
@@ -203,7 +223,7 @@
     <Compile Include="UI\comandBar.Designer.cs">
       <DependentUpon>comandBar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Default.cs" />
+    <Compile Include="Views\Default.cs" />
     <Compile Include="UI\DiagramaMesas.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -216,17 +236,17 @@
     <Compile Include="UI\ErrorBar.Designer.cs">
       <DependentUpon>ErrorBar.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormView.cs">
+    <Compile Include="Forms\FormView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormView.Designer.cs">
+    <Compile Include="Forms\FormView.Designer.cs">
       <DependentUpon>FormView.cs</DependentUpon>
     </Compile>
-    <Compile Include="ILista.cs" />
-    <Compile Include="Lista.cs">
+    <Compile Include="Interfaces\ILista.cs" />
+    <Compile Include="Forms\Lista.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Lista.Designer.cs">
+    <Compile Include="Forms\Lista.Designer.cs">
       <DependentUpon>Lista.cs</DependentUpon>
     </Compile>
     <Compile Include="Catalogo.cs">
@@ -235,55 +255,55 @@
     <Compile Include="Catalogo.Designer.cs">
       <DependentUpon>Catalogo.cs</DependentUpon>
     </Compile>
-    <Compile Include="LoginFrm.cs">
+    <Compile Include="Forms\LoginFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoginFrm.Designer.cs">
+    <Compile Include="Forms\LoginFrm.Designer.cs">
       <DependentUpon>LoginFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainFrm.cs">
+    <Compile Include="Forms\MainFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainFrm.Designer.cs">
+    <Compile Include="Forms\MainFrm.Designer.cs">
       <DependentUpon>MainFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MesaControl.cs">
+    <Compile Include="UI\MesaControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="MesaControl.Designer.cs">
+    <Compile Include="UI\MesaControl.Designer.cs">
       <DependentUpon>MesaControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="OneValueFrm.cs">
+    <Compile Include="Forms\OneValueFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="OneValueFrm.Designer.cs">
+    <Compile Include="Forms\OneValueFrm.Designer.cs">
       <DependentUpon>OneValueFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PartsForm.cs">
+    <Compile Include="Forms\PartsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PartsForm.Designer.cs">
+    <Compile Include="Forms\PartsForm.Designer.cs">
       <DependentUpon>PartsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Punto.cs">
+    <Compile Include="Forms\Punto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Punto.Designer.cs">
+    <Compile Include="Forms\Punto.Designer.cs">
       <DependentUpon>Punto.cs</DependentUpon>
     </Compile>
-    <Compile Include="RemotasForm.cs">
+    <Compile Include="Forms\RemotasForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RemotasForm.Designer.cs">
+    <Compile Include="Forms\RemotasForm.Designer.cs">
       <DependentUpon>RemotasForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Session.cs" />
-    <Compile Include="UI\MoveFrm.cs">
+    <Compile Include="Forms\MoveFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\MoveFrm.Designer.cs">
+    <Compile Include="Forms\MoveFrm.Designer.cs">
       <DependentUpon>MoveFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\TextoBoxp.cs">
@@ -292,26 +312,28 @@
     <Compile Include="UI\TextoBoxp.Designer.cs">
       <DependentUpon>TextoBoxp.cs</DependentUpon>
     </Compile>
-    <Compile Include="TotalForm.cs">
+    <Compile Include="Forms\TotalForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TotalForm.Designer.cs">
+    <Compile Include="Forms\TotalForm.Designer.cs">
       <DependentUpon>TotalForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities.cs" />
-    <Compile Include="Varios.cs" />
     <Compile Include="Views\AbrirMesaClass.cs" />
     <Compile Include="Worker.cs" />
-    <EmbeddedResource Include="AboutBox1.resx">
+    <EmbeddedResource Include="Forms\AboutBox1.resx">
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AbrirMesaFrm.resx">
+    <EmbeddedResource Include="Forms\AbrirMesaFrm.resx">
       <DependentUpon>AbrirMesaFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AreasForm.resx">
+    <EmbeddedResource Include="Forms\AreasForm.resx">
       <DependentUpon>AreasForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DetalleMesaForm.resx">
+    <EmbeddedResource Include="Forms\DescuentoDialog.resx">
+      <DependentUpon>DescuentoDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DetalleMesaForm.resx">
       <DependentUpon>DetalleMesaForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\PagoCtrl.resx">
@@ -320,13 +342,13 @@
     <EmbeddedResource Include="UI\Botonera.resx">
       <DependentUpon>Botonera.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BusquedaFrm.resx">
+    <EmbeddedResource Include="Forms\BusquedaFrm.resx">
       <DependentUpon>BusquedaFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CategoriasForm.resx">
+    <EmbeddedResource Include="Forms\CategoriasForm.resx">
       <DependentUpon>CategoriasForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ClienteFrm.resx">
+    <EmbeddedResource Include="Forms\ClienteFrm.resx">
       <DependentUpon>ClienteFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\comandBar.resx">
@@ -338,28 +360,28 @@
     <EmbeddedResource Include="UI\ErrorBar.resx">
       <DependentUpon>ErrorBar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormView.resx">
+    <EmbeddedResource Include="Forms\FormView.resx">
       <DependentUpon>FormView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Lista.resx">
+    <EmbeddedResource Include="Forms\Lista.resx">
       <DependentUpon>Lista.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Catalogo.resx">
       <DependentUpon>Catalogo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoginFrm.resx">
+    <EmbeddedResource Include="Forms\LoginFrm.resx">
       <DependentUpon>LoginFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainFRm.resx">
+    <EmbeddedResource Include="Forms\MainFRm.resx">
       <DependentUpon>MainFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MesaControl.resx">
+    <EmbeddedResource Include="UI\MesaControl.resx">
       <DependentUpon>MesaControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OneValueFrm.resx">
+    <EmbeddedResource Include="Forms\OneValueFrm.resx">
       <DependentUpon>OneValueFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PartsForm.resx">
+    <EmbeddedResource Include="Forms\PartsForm.resx">
       <DependentUpon>PartsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -372,16 +394,16 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Punto.resx">
+    <EmbeddedResource Include="Forms\Punto.resx">
       <DependentUpon>Punto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RemotasForm.resx">
+    <EmbeddedResource Include="Forms\RemotasForm.resx">
       <DependentUpon>RemotasForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\MoveFrm.resx">
+    <EmbeddedResource Include="Forms\MoveFrm.resx">
       <DependentUpon>MoveFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TotalForm.resx">
+    <EmbeddedResource Include="Forms\TotalForm.resx">
       <DependentUpon>TotalForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
@@ -409,10 +431,30 @@
       <ProductName>Microsoft .NET Framework 4.5.2 %28x86 y x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.SqlServer.SQLSysClrTypes.12.0.x64">
+      <Visible>False</Visible>
+      <ProductName>Microsoft® System CLR Types for SQL Server® 2014 %28x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.SqlServer.SQLSysClrTypes.12.0.x86">
+      <Visible>False</Visible>
+      <ProductName>Microsoft® System CLR Types for SQL Server® 2014 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.VSTORuntime.4.0">
+      <Visible>False</Visible>
+      <ProductName>Runtime de Microsoft Visual Studio 2010 Tools para Office %28x86 y x64%29</ProductName>
+      <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>

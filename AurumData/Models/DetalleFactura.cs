@@ -8,13 +8,16 @@ namespace AurumData
 	public class DetalleFactura
 	{
 	
+
 		private int id;
+		[StringLength(10)]
 		private string codigoproducto;
 		private Decimal monto;
 		private Decimal iva;
 		private Decimal cant;
 		private string factura;
-		private Decimal nota;
+		[StringLength(100)]
+		private string  nota;
 		private string mesa;
 		public DetalleFactura()
 		{
@@ -29,7 +32,7 @@ namespace AurumData
 		public decimal Iva { get => iva; set => iva = value; }
 		public decimal Cant { get => cant; set => cant = value; }
 		public string Factura { get => factura; set => factura = value; }
-		public decimal Nota { get => nota; set => nota = value; }
+		public string Nota { get => nota; set => nota = value; }
 		public string Mesa { get => mesa; set => mesa = value; }
 	}
 }

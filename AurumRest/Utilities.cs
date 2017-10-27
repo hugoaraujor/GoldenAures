@@ -142,6 +142,11 @@ namespace AurumRest
 			xdataGridView1.Columns[18].Visible = false;
 
 		}
+		public static void Mensaje(AurumRest.ErrorBar msgBar, string v, errorType alert)
+		{
+			msgBar.Mensaje = v;
+			msgBar.Status = alert;
+		}
 		public static void Controles(Control forma,string action)
 		{
 			foreach(Control c in forma.Controls)

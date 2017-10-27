@@ -13,6 +13,19 @@ namespace AurumBusiness.Controllers
 {
 	public class ProductoManager
 	{
+		public ProductoDTO GetProductoDTO(string codigo)
+		{
+			ProductoDTO B = new ProductoDTO();
+			Producto query = null;
+			using (var db = new Data())
+			{
+				query = (from x in db.Productos where x.Codigo == codigo select x).FirstOrDefault();
+
+			}
+			if (query != null)
+				B = new ProductoDTO { Activo = query.Activo, Pesa = query.Pesa, Categoria = query.Categoria, Codigo = query.Codigo, Exento = query.Exento, IdProducto = query.IdProducto, Imagenurl = query.Imagenurl, Impresora = query.Impresora, Menu = query.Menu, Nombre = query.Nombre, PrecioNeto = query.PrecioNeto, Costo = query.Costo };
+			return B;
+		}
 		public ProductoDTO GetProductoDTO(int id)
 		{
 			ProductoDTO B = new ProductoDTO();
