@@ -7,8 +7,8 @@ namespace AurumDataEntity
 		public string Facturanro { get;set; }
 		public int Id { get; set; }
 		public string Nota { get; set; }
+		public decimal Montoiva { get; set; }
 		public decimal Montoneto { get; set; }
-		public decimal Iva { get; set; }
 		public decimal Total { get; set; }
 		public string Caja { get; set; }
 		public string Mesa { get; set; }
@@ -21,6 +21,8 @@ namespace AurumDataEntity
 		public string Serial { get; set; }
 		public string Moneda { get; set; }
 		public bool Anulada { get; set; }
+		public string Cierrex { get; set; }
+		public string Cierrez { get; set; }
 
 	}
 }

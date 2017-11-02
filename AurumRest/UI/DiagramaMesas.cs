@@ -16,7 +16,7 @@ namespace AurumRest
 	public partial class DiagramaMesas : UserControl
 	{
 		MesonerosManager m = new MesonerosManager();
-		Global g = new Global();
+		 public Global  g=Global.Instancia;
 		int currentArea = 0;
 		AreaManager areaControl = new AreaManager();
 		MesasManager mesaManager = new MesasManager();
@@ -27,12 +27,21 @@ namespace AurumRest
 		Consecutivos secuencia=new Consecutivos();
 		public bool totaliza=false;
 		public delegate bool customHandler(object sender);
+		public Botonera botonera;
 		//	public event customHandler OnClickButton;
 		public DiagramaMesas()
 		{
 			InitializeComponent();
 			label3.Text = currentMesa.Siglas;
+			this.GotFocus += DiagramaMesas_GotFocus;
+		
 		}
+
+		private void DiagramaMesas_GotFocus(object sender, EventArgs e)
+		{
+			MessageBox.Show("esprimero);");
+		}
+
 		public string GetMesa()
 		{
 			return currentMesa.Siglas;
@@ -41,10 +50,16 @@ namespace AurumRest
 		{
 			this.currentMesa.Siglas = "0";
 			g.SetMesa(this.currentMesa);
-			((Botonera)Parent.Controls["botonera"]).Cambia(this);
+			botonera.Cambia();
 			this.SendToBack();
 		}
 		private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			MuestraMesas();
+
+		}
+
+		public void MuestraMesas()
 		{
 			if (listBox1.SelectedIndex > -1)
 			{
@@ -54,14 +69,14 @@ namespace AurumRest
 				}
 				catch
 				{
-					currentArea = -1;
+		//			currentArea = -1;
 				}
 				nmesas = areaControl.GetTotalMesas(currentArea);
-				ShowMesas(this.flowLayoutPanel2, currentArea);
+				ShowMesas(this.flowLayoutPanel2, currentArea,nmesas);
 			}
 		}
 
-		private void ShowMesas(Panel panel1, int currArea)
+		private void ShowMesas(Panel panel1, int currArea,int nmesas)
 		{
 			panel1.Controls.Clear();
 			var prefijo = areaControl.GetAreaDTO(currArea).Prefijo;
@@ -132,8 +147,6 @@ namespace AurumRest
 		{
 			label3.Text = (((Button)sender).Text);
 			currentMesa = mesaManager.GetMesa(((Button)sender).Text);
-
-			
 			g.SetMesa(currentMesa);
 			if (currentMesa.Estado == EstadosMesa.Ocupada&&currentMesa.Ocupada)
 			{ button5.Text = "Ordenar";
@@ -144,11 +157,13 @@ namespace AurumRest
 			  label4.Text = "DISPONIBLE";
 			}
 			
-		//	MessageBox.Show(currentMesa.Siglas);
+		
 
 		}
-		public void Cambia(Botonera dbotonera)
+		public void Cambia()
 		{
+		
+			MuestraMesas();
 			MessageBox.Show("cambia");
 		}
 		private void DiagramaMesas_Load(object sender, EventArgs e)
@@ -166,7 +181,7 @@ namespace AurumRest
 
 
 			g.SetMesa(this.currentMesa);
-			((Botonera)Parent.Controls["botonera"]).Cambia(this);
+			botonera.Cambia();
 			if (((Button)sender).Text == "Abrir")
 			{
 				DialogResult Dresult = AbrirMesa(this.currentMesa.Siglas);
@@ -199,7 +214,7 @@ namespace AurumRest
 
 		private void refrescar()
 		{
-			ShowMesas(this.flowLayoutPanel2, currentArea);
+			ShowMesas(this.flowLayoutPanel2, currentArea,nmesas);
 		}
 
 		private void button2_Click(object sender, EventArgs e)
@@ -209,7 +224,7 @@ namespace AurumRest
 			totaliza = true;
 			g.currMesa = currentMesa;
 			g.SetMesa(this.currentMesa);
-			((Botonera)Parent.Controls["botonera"]).Cambia(this);
+			botonera.Cambia();
 			totaliza = false;
 			//((Botonera)ctrl).Li
 		
@@ -235,6 +250,16 @@ namespace AurumRest
 		}
 			
 
+		}
+
+		private void DiagramaMesas_VisibleChanged(object sender, EventArgs e)
+		{
+			
+		}
+
+		private void flowLayoutPanel2_Enter(object sender, EventArgs e)
+		{
+			
 		}
 	}
 }

@@ -22,4 +22,6 @@ namespace AurumDataEntities
 		public string Fin { get; set; }
 		public DateTime Fecha { get; set; }
 	}
+	  
+
 }

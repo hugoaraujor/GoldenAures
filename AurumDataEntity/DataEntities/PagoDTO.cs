@@ -10,6 +10,6 @@ namespace AurumDataEntity
 		public decimal Cambio { get; set; }
 		public string Factura { get; set; }
 		public string Nota { get; set; }
-		public DateTime Fecha { get; set; }
+		
 	}
 }

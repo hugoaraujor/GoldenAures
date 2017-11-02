@@ -19,17 +19,17 @@ namespace AurumRest
 		public abstract void Pagos();
 		public abstract void CierraFactura();
 		public abstract bool isAnulada();
-		
+		public abstract int GetLast(ref string NumeroDoc);
 		//Nota de credito
 		public abstract void EmiteNotadeCredito(string facturaNo);
 
 		// The "Template method"
-		public void Facturar(List<TicketDetalle> ListaF, TotalapagarView TotalesF)
+		public string   Facturar(ProcTicket ticket)
 		{
-			cliente = TotalesF.cliente;
-			lista = ListaF;
-			totales = TotalesF;
-
+			cliente = ticket.totales.cliente;
+			lista = ticket.lista;
+			totales = ticket.totales;
+		    
 			Header();
 			DatosCliente();
 			VendeProductos();
@@ -37,14 +37,21 @@ namespace AurumRest
 			Pagos();
 			CierraFactura();
 			isAnulada();
+			string  NumeroDoc = "      ";
+			int n=GetLast(ref  NumeroDoc);
+			return NumeroDoc;
 		}
-		public void EmitirNota(string Doc)
+
+		
+		public string  EmitirNota(string Doc)
 		{
 			Header();
 			EmiteNotadeCredito(Doc);
 			VendeProductos();
 			CierraFactura();
-
+			string NumeroDoc = "      ";
+			int n = GetLast(ref NumeroDoc);
+			return NumeroDoc;
 		}
 
 	}

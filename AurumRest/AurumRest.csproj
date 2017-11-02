@@ -142,6 +142,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CierreZFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CierreZFrm.Designer.cs">
+      <DependentUpon>CierreZFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AboutBox1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +168,20 @@
     </Compile>
     <Compile Include="AreasLista.cs" />
     <Compile Include="Bixolon.cs" />
+    <Compile Include="UI\AperturaFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AperturaFrm.Designer.cs">
+      <DependentUpon>AperturaFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DocumentManager.cs" />
+    <Compile Include="UI\ProcessedTicket.cs" />
+    <Compile Include="UI\TurnosFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\TurnosFrm.Designer.cs">
+      <DependentUpon>TurnosFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\ClasePago.cs" />
     <Compile Include="Consecutivos.cs" />
     <Compile Include="Forms\DescuentoDialog.cs">
@@ -321,6 +341,9 @@
     <Compile Include="Utilities.cs" />
     <Compile Include="Views\AbrirMesaClass.cs" />
     <Compile Include="Worker.cs" />
+    <EmbeddedResource Include="CierreZFrm.resx">
+      <DependentUpon>CierreZFrm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AboutBox1.resx">
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </EmbeddedResource>
@@ -335,6 +358,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DetalleMesaForm.resx">
       <DependentUpon>DetalleMesaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\AperturaFrm.resx">
+      <DependentUpon>AperturaFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\PagoCtrl.resx">
       <DependentUpon>PagoCtrl.cs</DependentUpon>
@@ -405,6 +431,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TotalForm.resx">
       <DependentUpon>TotalForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\TurnosFrm.resx">
+      <DependentUpon>TurnosFrm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

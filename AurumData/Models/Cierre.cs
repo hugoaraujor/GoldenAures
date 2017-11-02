@@ -13,8 +13,17 @@ namespace AurumData
 	{
 
 		private int     idcierre;
+		private char tipo;
 		[DataType(DataType.Currency)]
-		private int tipo;
+		private decimal montoneto;
+		[DataType(DataType.Currency)]
+		private decimal montoiva;
+		[DataType(DataType.Currency)]
+		private decimal total;
+
+		private int facturas;
+		
+		[DataType(DataType.Currency)]
 		private decimal efectivo;
 		[DataType(DataType.Currency)]
 		private decimal debito;
@@ -34,6 +43,8 @@ namespace AurumData
 		[StringLength(10)]
 		private string fin;
 		private DateTime fecha;
+		[StringLength(7)]
+		private string serial;
 
 		public Cierre()
 		{
@@ -55,5 +66,10 @@ namespace AurumData
 		public string Inicio { get => inicio; set => inicio = value; }
 		public string Fin { get => fin; set => fin = value; }
 		public DateTime Fecha { get => fecha; set => fecha = value; }
+		public string Serial { get => serial; set => serial = value; }
+		public decimal Montoneto { get => montoneto; set => montoneto = value; }
+		public decimal Montoiva { get => montoiva; set => montoiva = value; }
+		public decimal Total { get => total; set => total = value; }
+		public char Tipo { get => tipo; set => tipo = value; }
 	}
 }

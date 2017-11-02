@@ -22,6 +22,38 @@ namespace AurumRest
 			//Global.Instancia.ticket=t;
 			return t;
 		}
+		public string getUltFactura()
+		{
+			string  t;
+			try
+			{
+				t = MyInis.Read("Consecutivos", "Factura");
+			}
+			catch
+			{
+				MyInis.Write("Consecutivos", "Factura", "0");
+				t =MyInis.Read("Consecutivos", "Factura");
+			}
+			//Global.Instancia.ticket=t;
+			return t;
+		}
+
+
+		public int regresaapunto()
+		{
+			int t;
+			try
+			{
+				t = Convert.ToInt32(MyInis.Read("Comportamiento", "RegresaaPunto"));
+			}
+			catch
+			{
+				MyInis.Write("Comportamiento", "RegresaaPunto", "0");
+				t = Convert.ToInt32(MyInis.Read("Comportamiento", "RegresaaPunto"));
+			}
+			//Global.Instancia.ticket=t;
+			return t;
+		}
 		public FontType getFont()
 		{
 						FontType f = new FontType();
@@ -79,6 +111,15 @@ namespace AurumRest
 			int t = getTicket();
 			MyInis.Write("Consecutivos", "Ticket",n.ToString());
 			//Global.Instancia.ticket = t;
+
+		}
+		public void SaveFactura(string fact)
+		{
+			if (fact != "")
+			{
+				MyInis.Write("Consecutivos", "Factura", fact);
+			}
+			
 		}
 	}
 }

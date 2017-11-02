@@ -38,6 +38,7 @@
 			this.textoBoxp4 = new AurumRest.TextoBoxp();
 			this.txtDescuento = new AurumRest.TextoBoxp();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.label4 = new System.Windows.Forms.Label();
 			this.labelPercent = new System.Windows.Forms.Label();
 			this.TxtNombre = new AurumRest.TextoBoxp();
 			this.label5 = new System.Windows.Forms.Label();
@@ -66,7 +67,6 @@
 			this.label10 = new System.Windows.Forms.Label();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-			this.label4 = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.panel1.SuspendLayout();
@@ -213,6 +213,16 @@
 			this.groupBox1.Size = new System.Drawing.Size(684, 192);
 			this.groupBox1.TabIndex = 10;
 			this.groupBox1.TabStop = false;
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label4.Location = new System.Drawing.Point(41, 70);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(112, 30);
+			this.label4.TabIndex = 24;
+			this.label4.Text = "Descuento";
 			// 
 			// labelPercent
 			// 
@@ -541,16 +551,6 @@
 			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
 			this.flowLayoutPanel1.Size = new System.Drawing.Size(1384, 471);
 			this.flowLayoutPanel1.TabIndex = 26;
-			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label4.Location = new System.Drawing.Point(41, 70);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(112, 30);
-			this.label4.TabIndex = 24;
-			this.label4.Text = "Descuento";
 			// 
 			// TotalForm
 			// 

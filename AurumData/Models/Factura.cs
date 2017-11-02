@@ -21,7 +21,7 @@ namespace AurumData
 		[DataType(DataType.Currency)]
 		private Decimal montoneto;
 		[DataType(DataType.Currency)]
-		private Decimal iva;
+		private Decimal montoiva;
 		[DataType(DataType.Currency)]
 		private Decimal total;
 		[DataType(DataType.Currency)]
@@ -35,6 +35,7 @@ namespace AurumData
 		private int  userid;
 		[DataType(DataType.Currency)]
 		private Decimal descuento;
+		[DataType(DataType.Currency)]
 		private Decimal tasa;
 		[StringLength(20)]
 		private string equipo;
@@ -45,6 +46,10 @@ namespace AurumData
 		private bool anulada;
 		[DataType(DataType.DateTime)]
 		private DateTime fecha;
+		[StringLength(6)]
+		private string cierrex;
+		[StringLength(6)]
+		private string cierrez;
 		public Factura()
 		{
 			
@@ -55,7 +60,6 @@ namespace AurumData
 		[StringLength(160)]
 		public string Nota { get => nota; set => nota = value; }
 		public decimal Montoneto { get => montoneto; set => montoneto = value; }
-		public decimal Iva { get => iva; set => iva = value; }
 		public decimal Total { get => total; set => total = value; }
 		[StringLength(12)]
 		public string Caja { get => caja; set => caja = value; }
@@ -75,5 +79,8 @@ namespace AurumData
 		public bool Anulada { get => anulada; set => anulada = value; }
 		public decimal Exento { get => exento; set => exento = value; }
 		public DateTime Fecha { get => fecha; set => fecha = value; }
+		public decimal Montoiva { get => montoiva; set => montoiva = value; }
+		public string Cierrex { get => cierrex; set => cierrex = value; }
+		public string Cierrez { get => cierrez; set => cierrez = value; }
 	}
 }

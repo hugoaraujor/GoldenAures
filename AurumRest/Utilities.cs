@@ -9,7 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AurumRest
-{   public class Search_Params
+{
+	public enum Cierreenum
+	{
+		X,
+		Z
+	}
+	public class Search_Params
 	{
 		public List<String> parametros { get; set; }
 		public DataTable data { get; set; }

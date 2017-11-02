@@ -9,7 +9,7 @@ namespace AurumData
 		//[Key]
 		//[Column(Order = 1)]
 		//[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-		private long idcliente;
+		private int idcliente;
 		[Required]
 		[StringLength(13)]
 		[Key]
@@ -33,7 +33,7 @@ namespace AurumData
 		[Key]
 		[Column(Order = 1)]
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-		public long Idcliente
+		public int Idcliente
 		{
 			get
 			{

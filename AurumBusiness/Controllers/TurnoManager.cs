@@ -19,10 +19,10 @@ namespace AurumBusiness.Controllers
 			using (var db = new Data())
 			{
 				db.Turnos.Add(new Turno()
-				{
+				{ Idturno = 0,
 				 Turnodesc=x.Turnodesc,
-				 Desde=x.Desde,
-				 Hasta=x.Hasta
+				 Desde=x.Desde.ToString(),
+				 Hasta=x.Hasta.ToString()
 
 
 
@@ -70,7 +70,17 @@ namespace AurumBusiness.Controllers
 			return resp;
 		}
 		#endregion
+		public List<Turno> GetList()
+		{
+			
+			using (var db = new Data())
+			{
+				List<Turno> Edo = (from x in db.Turnos select x).ToList();
+				return Edo;
 
+			}
+			
+		}
 
 		#region Edit
 
@@ -95,6 +105,30 @@ namespace AurumBusiness.Controllers
 			}
 			catch (DbEntityValidationException e)
 			{ }
+		}
+
+		public Turno GetTurno(int Idturno)
+		{
+
+			
+			Turno pac=new Turno();
+			try
+			{
+				using (var db = new Data())
+				{
+					 pac = (from p in db.Turnos where p.Idturno == Idturno select p).FirstOrDefault();
+					if (pac != null)
+					{
+						return pac;
+					}
+
+				}
+			}
+			catch (DbEntityValidationException e)
+			{
+				
+			}
+			return pac;
 		}
 
 		#endregion

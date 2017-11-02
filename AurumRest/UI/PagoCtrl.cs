@@ -128,13 +128,18 @@ namespace AurumRest
 		}
 		private void button2_Click(object sender, EventArgs e)
 		{
+			var Forma = Parent.FindForm();
 			label1.BackColor = Color.White;
 				Pago.Monto = Convert.ToDecimal(textoBoxp19.Text);
 				Enum.TryParse(comboBox1.Text, out ClasePago myStatus);
 				Pago.ClasePago = myStatus;
 				Pago.Detalle = this.comboBox3.Text;
+			Pago.Tipo = comboBox1.SelectedIndex.ToString();
+			Pago.Cambio =Math.Abs( Convert.ToDecimal(((TotalForm)Forma).label13.Text) -Pago.Monto);
+			Pago.ClasePago = myStatus;
+			
 				this.Tag = Pago;
-				var Forma = Parent.FindForm();
+			
 				confirmed = true;
 				((TotalForm)Forma).AgregaPago(Pago);
 				button2.Visible = false;

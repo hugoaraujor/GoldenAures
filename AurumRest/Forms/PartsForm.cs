@@ -240,22 +240,25 @@ namespace AurumRest
 			comboBox1.DataSource = null;
 			comboBox2.DataSource = null;
 			comboBox3.DataSource = null;
-			var categorias = Context.Categorias.Where(p => p.Activo).ToArray();
-			comboBox1.DataSource = categorias;
+			
 			comboBox1.ValueMember = "Idcategoria";
 			comboBox1.DisplayMember = "CategoriaDesc";
+			var categorias = Context.Categorias.Where(p => p.Activo).ToArray();
+			comboBox1.DataSource = categorias;
 			comboBox1.SelectedValue = 0;
 
-			var remotas = Context.Remotas.ToArray();
-			comboBox2.DataSource = remotas;
+			
 			comboBox2.ValueMember = "remotaid";
 			comboBox2.DisplayMember = "nombre";
+			var remotas = Context.Remotas.ToArray();
+			comboBox2.DataSource = remotas;
 			comboBox2.SelectedValue = 0;
 
-			var menu = Context.Menus.ToArray();
-			comboBox3.DataSource = menu;
+			
 			comboBox3.ValueMember = "IdMenu";
 			comboBox3.DisplayMember = "menuDesc";
+			var menu = Context.Menus.ToArray();
+			comboBox3.DataSource = menu;
 			comboBox3.SelectedValue = 0;
 		}
 

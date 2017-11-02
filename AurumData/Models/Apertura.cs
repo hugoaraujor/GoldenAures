@@ -14,7 +14,10 @@ namespace AurumData
 		private int idapertura;
 			private DateTime fecha;
 			private decimal monto;
-			public Apertura()
+		private int turno;
+		private int userid;
+		private bool cerrada { get; set; }
+		public Apertura()
 			{
 
 			}
@@ -24,5 +27,6 @@ namespace AurumData
 		public int Idapertura { get => idapertura; set => idapertura = value; }
 		public DateTime Fecha { get => fecha; set => fecha = value; }
 		public decimal Monto { get => monto; set => monto = value; }
+		public bool Cerrada { get => cerrada; set => cerrada = value; }
 	}
 }

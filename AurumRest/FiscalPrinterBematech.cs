@@ -38,20 +38,26 @@ namespace FiscalPrinterBematech
 			[DllImport("BemaFi32.dll")] public static extern int Bematech_FI_FinalizaCierreCupon(string Mensaje);
 			[DllImport("BemaFi32.dll")] public static extern int Bematech_FI_DevolucionArticulo(string Codigo, string Descripcion, string Alicuota, string TipoCantidad, string Cantidad, int CasasDecimales, string ValorUnit, string TipoDescuento, string ValorDesc);
 			[DllImport("BemaFi32.dll")] public static extern int Bematech_FI_AbreNotaDeCredito(string Nombre, string NumeroSerie, string RIF, string Dia, string Mes, string Ano, string Hora, string Minuto, string Segundo, string COO, string MsjPromocional);
-			#endregion
+				[DllImport("BemaFi32.dll")] public static extern int Bematech_FI_NumeroCupon([MarshalAs(UnmanagedType.VBByRefStr)] ref string NumeroCupom);
+				[DllImport("BemaFi32.dll")] public static extern int Bematech_FI_NumeroComprobanteFiscal([MarshalAs(UnmanagedType.VBByRefStr)] ref string NumeroComprobanteFiscal);
 
-			#region Funciones de los Informes Fiscales    
-			[DllImport("BemaFi32.dll")] public static extern int Bematech_FI_LecturaX();
+
+
+		#endregion
+
+		#region Funciones de los Informes Fiscales    
+		    [DllImport("BemaFi32.dll")] public static extern int Bematech_FI_LecturaX();
 			[DllImport("BemaFi32.dll")] public static extern int Bematech_FI_LecturaXSerial();
 			[DllImport("BemaFi32.dll")] public static extern int Bematech_FI_ReduccionZ(string Fecha, string Hora);
-			[DllImport("BemaFi32.dll")] public static extern int Bematech_FI_InformeGerencial(string Texto);
+		    [DllImport("BemaFi32.dll")] public static extern int Bematech_FI_InformeGerencial(string Texto);
 			[DllImport("BemaFi32.dll")] public static extern int Bematech_FI_CierraInformeGerencial();
 			[DllImport("BemaFi32.dll")] public static extern int Bematech_FI_FlagFiscalesIII(int Flag);
 			[DllImport("BemaFi32.dll")] public static extern int Bematech_FI_InformeTransacciones(string tipo, string Fechaini, string Fechafim, string Opcion);
-			#endregion
+		    [DllImport("BemaFi32.dll")] 	public static extern int Bematech_FI_FechamentoDoDia();
+		#endregion
 
-			#region Funciones de las Operaciones No Fiscales    
-			[DllImport("BemaFi32.dll")] public static extern int Bematech_FI_RecebimientoNoFiscal(string IndiceTotalizador, string Valor, string FormaPago);
+		#region Funciones de las Operaciones No Fiscales    
+		[DllImport("BemaFi32.dll")] public static extern int Bematech_FI_RecebimientoNoFiscal(string IndiceTotalizador, string Valor, string FormaPago);
 			[DllImport("BemaFi32.dll")] public static extern int Bematech_FI_AbreComprobanteNoFiscalVinculado(string FormaPago, string Valor, string NumeroCupon);
 			[DllImport("BemaFi32.dll")] public static extern int Bematech_FI_ImprimeComprobanteNoFiscalVinculado(string Texto);
 			[DllImport("BemaFi32.dll")] public static extern int Bematech_FI_CierraComprobanteNoFiscalVinculado();
@@ -95,6 +101,13 @@ namespace FiscalPrinterBematech
 			[DllImport("BemaFi32.dll")]	public static extern int Bematech_FI_AbreNotaDeCredito(string Nombre, string NumeroSerie, string RIF, string Dia, string Mes, string Ano, string Hora, string Minuto, string Segundo, string COO);
 		    [DllImport("BemaFi32.dll")] public static extern int Bematech_FI_VersaoFirmware([MarshalAs(UnmanagedType.VBByRefStr)] ref string VersaoFirmware);
 			[DllImport("BemaFi32.dll")]	public static extern int Bematech_FI_TotalIcmsCupom([MarshalAs(UnmanagedType.VBByRefStr)] ref string ValorIcms);
+
+		[DllImport("BemaFi32.dll")] public static extern int VerificaEstadoImpresora(ref int ACK, ref int ST1, ref int ST2);
+		[DllImport("BemaFi32.dll")] public static extern int Bematech_FI_VerificaImpresoraPrendida();
+		[DllImport("BemaFi32.dll")]	public static extern int Bematech_FI_AberturaDoDia(string Valor, string FormaPagto);
+		[DllImport("BemaFi32.dll")] public static extern int Bematech_FI_NumeroReducciones([MarshalAs(UnmanagedType.VBByRefStr)] ref string NumReducciones);
+
+
 
 		#endregion
 	}

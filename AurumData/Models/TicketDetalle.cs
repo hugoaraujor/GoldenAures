@@ -26,7 +26,7 @@ namespace AurumData
 		private Decimal iva;
 		private Decimal montoiva;
 		private string factura;
-		private Decimal nota;
+		private string nota;
 		private string mesa;
 		private string modificadores;
 		private string adicionales;
@@ -48,7 +48,7 @@ namespace AurumData
 		public decimal Monto { get => monto; set => monto = value; }
 		public decimal Iva { get => iva; set => iva = value; }
 		public string Factura { get => factura; set => factura = value; }
-		public decimal Nota { get => nota; set => nota = value; }
+		public string  Nota { get => nota; set => nota = value; }
 		public string Mesa { get => mesa; set => mesa = value; }
 		public string Adicionales { get => adicionales; set => adicionales = value; }
 		public string Notas { get => notas; set => notas = value; }

@@ -42,7 +42,9 @@
 			this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+			this.label3 = new System.Windows.Forms.Label();
 			this.menuStrip1.SuspendLayout();
+			this.flowLayoutPanel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// menuStrip1
@@ -124,6 +126,7 @@
 			// flowLayoutPanel1
 			// 
 			this.flowLayoutPanel1.AutoSize = true;
+			this.flowLayoutPanel1.Controls.Add(this.label3);
 			this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
 			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -137,6 +140,15 @@
 			this.imageList1.Images.SetKeyName(0, "mesa.png");
 			this.imageList1.Images.SetKeyName(1, "mesav.png");
 			this.imageList1.Images.SetKeyName(2, "mesar.png");
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(3, 0);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(35, 13);
+			this.label3.TabIndex = 1;
+			this.label3.Text = "label1";
 			// 
 			// Punto
 			// 
@@ -152,6 +164,8 @@
 			this.Load += new System.EventHandler(this.Punto_Load);
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
+			this.flowLayoutPanel1.ResumeLayout(false);
+			this.flowLayoutPanel1.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -171,5 +185,6 @@
 		private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
 		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
 		private System.Windows.Forms.ImageList imageList1;
+		private System.Windows.Forms.Label label3;
 	}
 }

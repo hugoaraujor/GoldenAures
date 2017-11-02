@@ -18,23 +18,30 @@ namespace AurumRest
 		public bool percentEdited = false;
 		public bool totalEdited = false;
 		public BackgroundWorker workerObject = new BackgroundWorker();
-		public TotalForm(Decimal paymentAmount, Ivatipo G)
+		private ClienteManager CMngr = new ClienteManager();
+		private Global g = new Global();
+		public TotalapagarView TotalesPago;
+        public int ipago = 0;
+		public int impresoraconectada = 0;
+		public List<Cliente> inicialQuery = new List<Cliente>();
+
+		public TotalForm(Mesa mesa,Decimal paymentAmount, Ivatipo G)
 		{
 			InitializeComponent();
 			//getPaymentParams(paymentAmount, G);
-			//TotalesPago.originalNeto = paymentAmount;
+
+			TotalesPago = new TotalapagarView();
+			TotalesPago.mesa=mesa;
 			TotalesPago.totalNeto = paymentAmount;
+			
+			
 			calculaValores(G);
 			//calculaValores(Ivatipo.Reducido);
 			displaytotales();
 			workerObject.DoWork += new DoWorkEventHandler(WorkerObject_DoWork);
 			workerObject.RunWorkerCompleted += WorkerObject_RunWorkerCompleted;
 		}
-		private ClienteManager CMngr = new ClienteManager();
-		private Global g = new Global();
-		public TotalapagarView TotalesPago = new TotalapagarView();
-		public int ipago = 0;
-		public List<Cliente> inicialQuery = new List<Cliente>();
+		
 		public void calculaValores(Ivatipo iva, Decimal descuento = 0)
 		{
 			var ivap = g.secuencia.getIva(iva);
@@ -47,14 +54,15 @@ namespace AurumRest
 			TotalesPago.total = Math.Round(((TotalesPago.totalNeto - TotalesPago.descuento) * ((TotalesPago.IvaPercent / 100) + 1)), 2);
 			TotalesPago.resta = TotalesPago.total - pagado();
 			TotalesPago.currentIva = iva;
+			TotalesPago.Cambio = 0;
 		}
 
-		public void AgregaMododePago(string tipo, Decimal d, String detalle = "", int i = 0)
+		public void AgregaMododePago(string tipo, Decimal d, String Detalle = "", int i = 0)
 		{
 
 			PagoCtrl detPago = new PagoCtrl();
 			var aux = Enum.TryParse(tipo, out ClasePago myStatus);
-			detPago.SetValues(new MontoPago { ClasePago = myStatus, Monto = d, Tipo = "", Detalle = detalle, Index = i });
+			detPago.SetValues(new MontoPago { ClasePago = myStatus, Monto = d, Tipo = "", Detalle = Detalle, Index = i , Cambio=Math.Abs(pagado()-d)});
 			label13.Text = string.Format("{0:0.00}", d);
 			detPago.Name = detPago.Name + i.ToString();
 			detPago.button2.Click += new EventHandler(Agrega);
@@ -63,10 +71,10 @@ namespace AurumRest
 		public void AgregaPago(MontoPago pago)
 		{
 			ipago = TotalesPago.ListaPagos.Count() + 1;
-			TotalesPago.ListaPagos.Add(new PagoView { clase = pago.ClasePago.ToString(), Detalle = pago.Detalle, montopago = pago.Monto });
+			TotalesPago.ListaPagos.Add(new PagoView { clase = pago.ClasePago.ToString(), detalle = pago.Detalle, montopago = pago.Monto,cambio=pago.Cambio });
 			TotalesPago.pagado = pagado();
 			TotalesPago.resta = TotalesPago.total - TotalesPago.pagado;
-			
+
 			if (TotalesPago.resta > 0)
 			{
 				label13.Text = string.Format("{0:0.00}", TotalesPago.resta);
@@ -76,9 +84,11 @@ namespace AurumRest
 		}
 		public void Agrega(object sender, EventArgs e)
 		{
-			
+
 			if (TotalesPago.resta <= 0.03M)
-			{	pictureBox1.Visible = true;
+			{
+				
+				pictureBox1.Visible = true;
 				label15.ForeColor = Color.DodgerBlue;
 				label13.ForeColor = Color.DodgerBlue;
 				label15.Text = "CAMBIO:";
@@ -95,6 +105,7 @@ namespace AurumRest
 			}
 			label13.Text = string.Format("{0:0.00}", Math.Abs(TotalesPago.resta));
 			label16.Text = string.Format("{0:0.00}", pagado());
+			
 		}
 
 		private decimal pagado()
@@ -199,18 +210,19 @@ namespace AurumRest
 		{
 			pictureBox1.Visible = false; timer1.Enabled = false;
 		}
-
-
 		private void button3_Click_1(object sender, EventArgs e)
 		{
-			this.Close();
-		}
+			 impresoraconectada=BemaFI32.Bematech_FI_VerificaImpresoraPrendida();
+			
+				this.Close();
+			  
 
+
+		}
 		private void label9_Click(object sender, EventArgs e)
 		{
 			panel2.SendToBack();
 		}
-
 		private void txtCedula_TextChanged(object sender, EventArgs e)
 		{
 			if (txtCedula.Text.Length == 4)
@@ -263,7 +275,6 @@ namespace AurumRest
 				e.Result = false;
 		
 		}
-		
 		private void txtCedula_KeyUp(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Enter)
@@ -288,21 +299,7 @@ namespace AurumRest
 		{
 			editCliente();
 		}
-		private void txtPercent_Leave(object sender, EventArgs e)
-		{
-			//var subtotal = Convert.ToDecimal(TotalesPago.totalNeto) - Convert.ToDecimal(txtDescuento.Text);
-			//var p = ((Convert.ToDecimal(txtDescuento.Text.Replace("%", "")) * 100) / subtotal);
-			//txtPercent.Text = Math.Round(p,1).ToString();// string.Format("{0:00.00}",Math.Round( p,2));
-			//calculaValores(TotalesPago.currentIva, Convert.ToDecimal(txtDescuento.Text));
-			//displaytotales();
-
-			//var p = Math.Round((Convert.ToDecimal(textoBoxp1.Text) * Convert.ToDecimal(txtPercent.Text.Replace("%", ""))) / 100, 1);
-			//txtDescuento.Text = Math.Round(p,1).ToString();
-			//calculaValores(TotalesPago.currentIva, Convert.ToDecimal(txtDescuento.Text));
-				//displaytotales();
-
-		}
-
+		
 		private void textoBoxp5_TextChanged(object sender, EventArgs e)
 		{
 					totalEdited = true;
@@ -318,7 +315,6 @@ namespace AurumRest
 			}
 			
 		}
-
 		private void textoBoxp6_TextChanged(object sender, EventArgs e)
 		{
 			percentEdited = true;

@@ -28,9 +28,9 @@ namespace AurumRest.Properties {
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=SERVER2\\SERVER2;Initial Catalog=C:\\DATACORINTO\\CORINTOSQL.MDF;Integra" +
             "ted Security=True")]
-        public string C__DATACORINTO_CORINTOSQL_MDFConnectionString {
+        public string CorintoConnection {
             get {
-                return ((string)(this["C__DATACORINTO_CORINTOSQL_MDFConnectionString"]));
+                return ((string)(this["CorintoConnection"]));
             }
         }
     }

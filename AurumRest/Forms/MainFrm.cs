@@ -154,5 +154,35 @@ namespace AurumRest
 		{
 
 		}
+
+		private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			AperturaFrm ec = new AperturaFrm();
+			Mostrar(ec);
+
+		}
+
+		private void turnosToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			TurnosFrm ec = new TurnosFrm();
+			Mostrar(ec);
+
+		}
+
+		private void cierreXToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			IPrinterFIOperaciones IP = new ImpresionBematech();
+			IP.LecturaX();
+			
+		}
+
+		private void cierreZToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			CierreZFrm xf = new CierreZFrm();
+			xf.ShowDialog();
+			//IPrinterFIOperaciones IP = new ImpresionBematech();
+			//IP.LecturaZ();
+
+		}
 	}
 }

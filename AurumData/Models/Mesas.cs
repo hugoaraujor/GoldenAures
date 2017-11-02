@@ -12,7 +12,6 @@ namespace AurumData
 	public class Mesa
 	{
 		private int idmesa;
-		[StringLength(10)]
 		private string siglas;
 		private bool ocupada;
 		
@@ -24,13 +23,17 @@ namespace AurumData
 
 		public Mesa()
 		{
-
+			siglas = "0";
+			Idmesonero = 0;
 		}
 
 		[Key]
 		[Column(Order = 1)]
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int Idmesa { get => idmesa; set => idmesa = value; }
+		[Key]
+		[Column(Order = 2)]
+		[StringLength(6)]
 		public string Siglas { get => siglas; set => siglas = value; }
 		public bool Ocupada { get => ocupada; set => ocupada = value; }
 		public DateTime Hora { get => hora; set => hora = value; }

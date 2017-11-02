@@ -13,20 +13,19 @@ namespace AurumBusiness.Controllers
 	{
 		#region Insert
 
-		public void InsertClase(PagoDTO NewClase)
+		public void Insert(PagoDTO NewClase)
 		{
 			var x = NewClase;
 			using (var db = new Data())
 			{
 				db.Pagos.Add(new Pago()
 				{
-					Factura = x.Factura,
-				Fecha = x.Fecha,
+				Factura = x.Factura,
 				Cambio = x.Cambio,
 				Montopago = x.Montopago,
 				Nota = x.Nota,
 				Tipopago = x.Tipopago
-
+				  
 
 			});
 
@@ -71,8 +70,7 @@ namespace AurumBusiness.Controllers
 					if (pac != null)
 					{
 						pac.Factura = x.Factura;
-						pac.Fecha = x.Fecha;
-						pac.Cambio = x.Cambio;
+		  			pac.Cambio = x.Cambio;
 						pac.Montopago = x.Montopago;
 						pac.Nota = x.Nota;
 						pac.Tipopago = x.Tipopago;

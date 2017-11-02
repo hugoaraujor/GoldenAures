@@ -1,4 +1,6 @@
 ﻿using AurumData;
+using FiscalPrinterBematech;
+using System;
 using System.Collections.Generic;
 
 namespace AurumRest
@@ -13,21 +15,42 @@ namespace AurumRest
 
 		public void ImprimeReporteGerencial(List<string> Lista)
 		{
-		
+			foreach (string st in Lista)
+			{
+				FiscalPrinterBematech.BemaFI32.Bematech_FI_InformeGerencial(st);
+			}
+			FiscalPrinterBematech.BemaFI32.Bematech_FI_CierraInformeGerencial();
 		}
-
-		public void Facturar( List<TicketDetalle> lista, TotalapagarView totales)
+		public string  NumerodeCierresZ()
+		{	string numero = "      ";
+			FiscalPrinterBematech.BemaFI32.Bematech_FI_NumeroReducciones(ref numero);
+			return numero;
+		}
+		public void AbrirCaja(string monto)
+		{
+			FiscalPrinterBematech.BemaFI32.Bematech_FI_AberturaDoDia(string.Format("{0:0##.00}",monto), "Efectivo");
+		}
+		public void LecturaX()
+		{
+			FiscalPrinterBematech.BemaFI32.Bematech_FI_LecturaX();
+		}
+		public void LecturaZ()
+		{
+			FiscalPrinterBematech.BemaFI32.Bematech_FI_FechamentoDoDia();
+		}
+		public string Facturar( ProcTicket ticket)
 		{
 			Factura FB = new FacturaBematech();
-			FB.Facturar( lista,  totales);
+			string  numerofact=FB.Facturar( ticket);
+			return numerofact;
 		}
 		public void EmiteNotadeCredito(string facturaNo)
 		{
 			Factura FB = new FacturaBematech();
 			FB.EmiteNotadeCredito(facturaNo);
 		}
+	
 
-		
 	}
 
 }

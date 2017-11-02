@@ -107,7 +107,7 @@
 			this.flowLayoutPanel1.Controls.Add(this.button9);
 			this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
 			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-			this.flowLayoutPanel1.Size = new System.Drawing.Size(594, 52);
+			this.flowLayoutPanel1.Size = new System.Drawing.Size(598, 52);
 			this.flowLayoutPanel1.TabIndex = 2;
 			// 
 			// button1
@@ -120,7 +120,7 @@
 			this.button1.ForeColor = System.Drawing.Color.White;
 			this.button1.Location = new System.Drawing.Point(3, 3);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(51, 50);
+			this.button1.Size = new System.Drawing.Size(51, 53);
 			this.button1.TabIndex = 1;
 			this.button1.UseVisualStyleBackColor = false;
 			this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -135,7 +135,7 @@
 			this.button2.ForeColor = System.Drawing.Color.White;
 			this.button2.Location = new System.Drawing.Point(60, 3);
 			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(53, 50);
+			this.button2.Size = new System.Drawing.Size(53, 53);
 			this.button2.TabIndex = 2;
 			this.button2.UseVisualStyleBackColor = false;
 			this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -150,7 +150,7 @@
 			this.button9.ForeColor = System.Drawing.Color.White;
 			this.button9.Location = new System.Drawing.Point(119, 3);
 			this.button9.Name = "button9";
-			this.button9.Size = new System.Drawing.Size(53, 50);
+			this.button9.Size = new System.Drawing.Size(53, 53);
 			this.button9.TabIndex = 3;
 			this.button9.UseVisualStyleBackColor = false;
 			this.button9.Click += new System.EventHandler(this.button9_Click_1);
@@ -184,7 +184,7 @@
 			this.button10.TabIndex = 11;
 			this.button10.Text = "TOTAL";
 			this.button10.UseVisualStyleBackColor = false;
-			this.button10.Click += new System.EventHandler(this.button10_Click_1);
+			this.button10.Click += new System.EventHandler(this.button10_Click);
 			// 
 			// labelticket
 			// 
@@ -330,7 +330,7 @@
 			// label1
 			// 
 			this.label1.BackColor = System.Drawing.Color.White;
-			this.label1.Font = new System.Drawing.Font("Segoe UI Emoji", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label1.Font = new System.Drawing.Font("Segoe UI Emoji", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label1.Location = new System.Drawing.Point(163, 18);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(219, 43);

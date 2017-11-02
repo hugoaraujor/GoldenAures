@@ -2,6 +2,8 @@
 using AurumDataEntity;
 using System.Data.Entity.Validation;
 using System.Linq;
+using System;
+
 namespace AurumBusiness.Controllers
 {
 	public class ParametrosManager
@@ -75,7 +77,22 @@ namespace AurumBusiness.Controllers
 			{ }
 		}
 
+		
+
+		public Parametro getParams()
+		{
+		
+			 Parametro query = new Parametro();
+				
+				using (var db = new Data())
+				{
+					query = (from x in db.Parametros select x).FirstOrDefault();
+
+				}
+				return query;
+			}
+		}
+
 		#endregion
 
 	}
-}

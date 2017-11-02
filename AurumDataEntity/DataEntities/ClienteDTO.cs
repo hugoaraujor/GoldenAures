@@ -4,7 +4,7 @@ namespace AurumDataEntities
 	public class ClienteDTO
 	{
 		
-		public long Idcliente { get; set; }
+		public int Idcliente { get; set; }
 		public string Nombre { get; set; }
 		public string Identificacion { get; set; }
 		public string Direccion { get; set; }

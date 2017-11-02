@@ -10,9 +10,12 @@ using System;
 namespace AurumRest
 {
 	public interface IPrinterFIOperaciones
-	{
+	{   string NumerodeCierresZ();
+		void AbrirCaja(string Monto);
+		void LecturaX();
+		void LecturaZ();
 		void EmiteNotadeCredito(String facturaNo);
-		void Facturar( List<TicketDetalle> lista, TotalapagarView totales);
+		string  Facturar( ProcTicket ticket);
 		void ImprimeReporteGerencial( List<string> Lista);
 		bool isAnulada(string invoiceNo="");
 	}

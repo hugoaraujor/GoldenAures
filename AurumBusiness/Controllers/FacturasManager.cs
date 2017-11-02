@@ -21,26 +21,36 @@ namespace AurumBusiness.Controllers
 				db.Facturas.Add(new Factura()
 				{
 
-				Caja = x.Caja,
-				Descuento = x.Descuento,
-				Equipo = x.Equipo,
-				Facturanro = x.Facturanro,
-				Iva = x.Iva,
-				Mesa = x.Mesa,
-				Montoneto = x.Montoneto,
-				Nota = x.Nota,
-				Serial = x.Serial,
-				Sirve = x.Sirve,
-				Tasa = x.Tasa,
-				Total = x.Total,
-				Userid = x.Userid,
-				//ClienteID = x.Cliente,
-				Moneda=x.Moneda
+					Caja = x.Caja,
+					Descuento = x.Descuento,
+					Equipo = x.Equipo,
+					Facturanro = x.Facturanro,
+					Montoiva=x.Montoiva,
+                    Mesa = x.Mesa,
+					Montoneto = x.Montoneto,
+					Nota = x.Nota,
+					Serial = x.Serial,
+					Sirve = x.Sirve,
+					Tasa = x.Tasa,
+					Total = x.Total,
+					Userid = x.Userid,
+					ClienteID = x.ClienteID,
+					Moneda = x.Moneda,
+					Anulada = x.Anulada,
+					Exento=0,
+					Fecha=DateTime.Now,
+					Cierrex=x.Cierrex,
+					Cierrez = x.Cierrez
 
-
-			});
-
-				db.SaveChanges();
+				});
+				try
+				{
+					db.SaveChanges();
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e);
+				}
 
 
 			}
@@ -102,9 +112,9 @@ namespace AurumBusiness.Controllers
 						pac.Descuento=x.Descuento;
 						pac.Equipo = x.Equipo;
 						pac.Facturanro = x.Facturanro;
-						pac.Iva = x.Iva;
 						pac.Mesa = x.Mesa;
 						pac.Montoneto = x.Montoneto;
+						pac.Montoiva = x.Montoiva;
 						pac.Nota = x.Nota;
 						pac.Serial = x.Serial;
 						pac.Sirve = x.Sirve;
@@ -113,7 +123,8 @@ namespace AurumBusiness.Controllers
 						pac.Userid = x.Userid;
 						pac.ClienteID = x.ClienteID;
 						pac.Moneda = x.Moneda;
-
+						pac.Cierrex = x.Cierrex;
+						pac.Cierrez = x.Cierrez;
 						db.SaveChanges();
 					}
 
@@ -122,8 +133,40 @@ namespace AurumBusiness.Controllers
 			catch (DbEntityValidationException e)
 			{ }
 		}
+		public enum Cierreenum
+		{
+			X,
+			Z
+		}
+		public void Cerrar(Cierreenum cierre,string nro)
+		{
+			
 
+			try
+			{
+				using (var db = new Data())
+				{
+					var pac = (from p in db.Facturas where p.Cierrex==null select p);
+					foreach (Factura f in pac)
+					{
+						if (pac != null && cierre == Cierreenum.X)
+						{
+							f.Cierrex = nro;
+						}
+						if (pac != null && cierre == Cierreenum.Z)
+						{
+							f.Cierrez = nro;
+						}
+					}
+					db.SaveChanges();
+				}
+			}
+			catch (DbEntityValidationException e)
+			{ }
+		}
 		#endregion
 
 	}
+
+	
 }

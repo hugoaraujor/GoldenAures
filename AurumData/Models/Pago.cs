@@ -15,11 +15,19 @@ namespace AurumData
 		
 		}
 
+		public PagoView(string detalle, decimal cambio)
+		{
+			this.detalle = detalle;
+			this.cambio = cambio;
+		}
+
 		public  int idpago { get; set; }
 		public string clase { get; set; }
 		public  Decimal montopago { get; set; }
-		public string Detalle { get; set; }
-
+		public string detalle { get; set; }
+		public string nota { get; set; }
+		public decimal cambio { get; set; }
+		public int tipopago { get; set; }
 	}
 	[Table("Pagos")]
 	public class Pago
@@ -33,7 +41,7 @@ namespace AurumData
 		private string factura;
 		[StringLength(10)]
 		private string nota;
-		private DateTime fecha;
+	
 
 		public Pago()
 		{
@@ -47,7 +55,6 @@ namespace AurumData
 		public decimal Montopago { get => montopago; set => montopago = value; }
 		public decimal Cambio { get => cambio; set => cambio = value; }
 		public string Factura { get => factura; set => factura = value; }
-		public DateTime Fecha { get => fecha; set => fecha = value; }
 		public string Nota { get => nota; set => nota = value; }
 
 

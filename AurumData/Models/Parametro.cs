@@ -22,7 +22,9 @@ namespace AurumData
 		private string phone;
 		[StringLength(25)]
 		private string serial;
-
+		
+		
+		
 		public Parametro()
 		{
 
@@ -37,7 +39,7 @@ namespace AurumData
 		public string Rif { get => rif; set => rif = value; }
 		public string Phone { get => phone; set => phone = value; }
 		public string Serial { get => serial; set => serial = value; }
-
+	
 		public void SetIva(int numero)
 		{
 			porcentajeIva = numero / 100;

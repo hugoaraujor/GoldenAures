@@ -13,24 +13,24 @@ namespace AurumBusiness.Controllers
 {
 	public class TicketDetalleManager
 	{
-		public List<TicketDetalle> GetList(string factura)
+		public List<TicketDetalle> GetList(string mesa)
 		{
 
-			List<TicketDetalle> query = new List<TicketDetalle>();
-			List<DetalleFactura> detallesF= new List<DetalleFactura>();
+	//		List<TicketDetalle> query = new List<TicketDetalle>();
+			List<TicketDetalle> detallesF= new List<TicketDetalle>();
 			ProductoManager productoMngr = new ProductoManager();
 			using (var db = new Data())
 				{
-					detallesF = (from x in db.DetalleFactura where x.Factura== factura select x).ToList();
+					detallesF = (from x in db.TicketDetalle where x.Mesa==mesa select x).ToList();
 
 				}
-			foreach (DetalleFactura d in detallesF)
-			{
-				var prod=productoMngr.GetProductoDTO(d.Codigoproducto);
-				query.Add(new TicketDetalle { Codigoproducto = d.Codigoproducto, Cant = d.Cant, Nombre = prod.Nombre, Neto = d.Monto, Iva = d.Iva, Montoiva = d.Monto * d.Iva, Mesa = d.Mesa, Factura = d.Factura });
-			}
+			//foreach (DetalleFactura d in detallesF)
+			//{
+			//	var prod=productoMngr.GetProductoDTO(d.Codigoproducto);
+			//	query.Add(new TicketDetalle { Codigoproducto = d.Codigoproducto, Cant = d.Cant, Nombre = prod.Nombre, Neto = d.Monto, Iva = d.Iva, Montoiva = d.Monto * d.Iva, Mesa = d.Mesa, Factura = d.Factura });
+			//}
 
-			return query;
+			return detallesF;
 		}
 		public List<TicketDetalle> GetList(string mesastr="0",int ticket=0,bool zero=false)
 		{
@@ -100,12 +100,17 @@ namespace AurumBusiness.Controllers
 		{
 			using (var db = new Data())
 			{
-				TicketDetalle query = (from x in db.TicketDetalle
+				var  query = (from x in db.TicketDetalle
 							   where x.Id == ticket
-							   select x).FirstOrDefault();
+							   select x).DefaultIfEmpty();
 				if (query != null)
 				{
-					db.TicketDetalle.Remove(query);
+					foreach (TicketDetalle t in query)
+					{
+						db.TicketDetalle.Remove(t);
+					}
+
+					
 					db.SaveChanges();
 				}
 			}
@@ -114,18 +119,31 @@ namespace AurumBusiness.Controllers
 		{
 			using (var db = new Data())
 			{
-				TicketDetalle query = (from x in db.TicketDetalle
-									   where x.Mesa==mesa
-									   select x).FirstOrDefault();
-				if (query != null)
-				{
-					db.TicketDetalle.Remove(query);
-					db.SaveChanges();
-				}
+
+				var query = db.TicketDetalle.Where(x => x.Mesa.TrimEnd() == mesa.TrimEnd()).ToList();
+				db.TicketDetalle.RemoveRange(query);
+				db.SaveChanges();
 			}
+			
 		}
 		#endregion
-		
+		public bool tienePedidos(string currentMesa)
+		{
+			bool resp;
+			using (var db = new Data())
+			{
+				var query = db.TicketDetalle.Where(x => x.Mesa == currentMesa).ToList();
+				if (query.Count == 0)
+				{
+					resp = false;
+				}
+				else
+				{
+					resp = true;
+				}
+			}
+			return resp;
+		}
 		#region Edit
 
 		public void Edit(TicketDetalle ticketEdit)
