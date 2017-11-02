@@ -59,7 +59,7 @@
 			this.label16 = new System.Windows.Forms.Label();
 			this.label15 = new System.Windows.Forms.Label();
 			this.label14 = new System.Windows.Forms.Label();
-			this.label13 = new System.Windows.Forms.Label();
+			this.labelResta = new System.Windows.Forms.Label();
 			this.PanelPago = new System.Windows.Forms.FlowLayoutPanel();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.label12 = new System.Windows.Forms.Label();
@@ -67,6 +67,8 @@
 			this.label10 = new System.Windows.Forms.Label();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+			this.label9 = new System.Windows.Forms.Label();
+			this.textoBoxp3 = new AurumRest.TextoBoxp();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.panel1.SuspendLayout();
@@ -105,7 +107,7 @@
 			this.textoBoxp2.IsDecimal = true;
 			this.textoBoxp2.IsInteger = false;
 			this.textoBoxp2.IsPercent = false;
-			this.textoBoxp2.Location = new System.Drawing.Point(243, 106);
+			this.textoBoxp2.Location = new System.Drawing.Point(243, 151);
 			this.textoBoxp2.Name = "textoBoxp2";
 			this.textoBoxp2.ReadOnly = true;
 			this.textoBoxp2.Size = new System.Drawing.Size(232, 39);
@@ -123,7 +125,7 @@
 			this.txtTotalPagar.IsDecimal = true;
 			this.txtTotalPagar.IsInteger = false;
 			this.txtTotalPagar.IsPercent = false;
-			this.txtTotalPagar.Location = new System.Drawing.Point(243, 149);
+			this.txtTotalPagar.Location = new System.Drawing.Point(243, 194);
 			this.txtTotalPagar.Name = "txtTotalPagar";
 			this.txtTotalPagar.Size = new System.Drawing.Size(232, 39);
 			this.txtTotalPagar.TabIndex = 5;
@@ -144,7 +146,7 @@
 			// 
 			this.label2.AutoSize = true;
 			this.label2.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label2.Location = new System.Drawing.Point(41, 111);
+			this.label2.Location = new System.Drawing.Point(41, 156);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(45, 30);
 			this.label2.TabIndex = 4;
@@ -154,7 +156,7 @@
 			// 
 			this.label3.AutoSize = true;
 			this.label3.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label3.Location = new System.Drawing.Point(41, 154);
+			this.label3.Location = new System.Drawing.Point(41, 199);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(174, 30);
 			this.label3.TabIndex = 5;
@@ -170,7 +172,7 @@
 			this.textoBoxp4.IsDecimal = false;
 			this.textoBoxp4.IsInteger = true;
 			this.textoBoxp4.IsPercent = false;
-			this.textoBoxp4.Location = new System.Drawing.Point(170, 106);
+			this.textoBoxp4.Location = new System.Drawing.Point(170, 151);
 			this.textoBoxp4.Name = "textoBoxp4";
 			this.textoBoxp4.ReadOnly = true;
 			this.textoBoxp4.Size = new System.Drawing.Size(67, 35);
@@ -187,7 +189,7 @@
 			this.txtDescuento.IsDecimal = true;
 			this.txtDescuento.IsInteger = false;
 			this.txtDescuento.IsPercent = false;
-			this.txtDescuento.Location = new System.Drawing.Point(243, 65);
+			this.txtDescuento.Location = new System.Drawing.Point(243, 110);
 			this.txtDescuento.Name = "txtDescuento";
 			this.txtDescuento.Size = new System.Drawing.Size(232, 39);
 			this.txtDescuento.TabIndex = 2;
@@ -198,6 +200,8 @@
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.label9);
+			this.groupBox1.Controls.Add(this.textoBoxp3);
 			this.groupBox1.Controls.Add(this.label4);
 			this.groupBox1.Controls.Add(this.labelPercent);
 			this.groupBox1.Controls.Add(this.txtDescuento);
@@ -210,7 +214,7 @@
 			this.groupBox1.Controls.Add(this.textoBoxp1);
 			this.groupBox1.Location = new System.Drawing.Point(23, 213);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(684, 192);
+			this.groupBox1.Size = new System.Drawing.Size(684, 233);
 			this.groupBox1.TabIndex = 10;
 			this.groupBox1.TabStop = false;
 			// 
@@ -218,7 +222,7 @@
 			// 
 			this.label4.AutoSize = true;
 			this.label4.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label4.Location = new System.Drawing.Point(41, 70);
+			this.label4.Location = new System.Drawing.Point(41, 115);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(112, 30);
 			this.label4.TabIndex = 24;
@@ -227,7 +231,7 @@
 			// labelPercent
 			// 
 			this.labelPercent.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.labelPercent.Location = new System.Drawing.Point(170, 65);
+			this.labelPercent.Location = new System.Drawing.Point(170, 110);
 			this.labelPercent.Name = "labelPercent";
 			this.labelPercent.Size = new System.Drawing.Size(67, 39);
 			this.labelPercent.TabIndex = 22;
@@ -415,7 +419,7 @@
 			this.panel2.Controls.Add(this.label16);
 			this.panel2.Controls.Add(this.label15);
 			this.panel2.Controls.Add(this.label14);
-			this.panel2.Controls.Add(this.label13);
+			this.panel2.Controls.Add(this.labelResta);
 			this.panel2.Controls.Add(this.PanelPago);
 			this.panel2.Location = new System.Drawing.Point(3, 469);
 			this.panel2.Name = "panel2";
@@ -480,15 +484,15 @@
 			this.label14.TabIndex = 23;
 			this.label14.Text = "Pagado";
 			// 
-			// label13
+			// labelResta
 			// 
-			this.label13.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label13.Location = new System.Drawing.Point(226, 362);
-			this.label13.Name = "label13";
-			this.label13.Size = new System.Drawing.Size(120, 30);
-			this.label13.TabIndex = 22;
-			this.label13.Text = "0,00";
-			this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.labelResta.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.labelResta.Location = new System.Drawing.Point(226, 362);
+			this.labelResta.Name = "labelResta";
+			this.labelResta.Size = new System.Drawing.Size(120, 30);
+			this.labelResta.TabIndex = 22;
+			this.labelResta.Text = "0,00";
+			this.labelResta.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// PanelPago
 			// 
@@ -552,6 +556,34 @@
 			this.flowLayoutPanel1.Size = new System.Drawing.Size(1384, 471);
 			this.flowLayoutPanel1.TabIndex = 26;
 			// 
+			// label9
+			// 
+			this.label9.AutoSize = true;
+			this.label9.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label9.Location = new System.Drawing.Point(41, 66);
+			this.label9.Name = "label9";
+			this.label9.Size = new System.Drawing.Size(84, 30);
+			this.label9.TabIndex = 26;
+			this.label9.Text = "Servicio";
+			// 
+			// textoBoxp3
+			// 
+			this.textoBoxp3.Enabled = false;
+			this.textoBoxp3.Entry = null;
+			this.textoBoxp3.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.textoBoxp3.ForeColor = System.Drawing.Color.Black;
+			this.textoBoxp3.IsCode = false;
+			this.textoBoxp3.IsDecimal = true;
+			this.textoBoxp3.IsInteger = false;
+			this.textoBoxp3.IsPercent = false;
+			this.textoBoxp3.Location = new System.Drawing.Point(243, 65);
+			this.textoBoxp3.Name = "textoBoxp3";
+			this.textoBoxp3.ReadOnly = true;
+			this.textoBoxp3.Size = new System.Drawing.Size(232, 39);
+			this.textoBoxp3.TabIndex = 25;
+			this.textoBoxp3.Text = "0,00";
+			this.textoBoxp3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			// 
 			// TotalForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -610,7 +642,7 @@
 		private System.Windows.Forms.Label label10;
 		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.Label label14;
-		public System.Windows.Forms.Label label13;
+		public System.Windows.Forms.Label labelResta;
 		private System.Windows.Forms.Label label16;
 		private System.Windows.Forms.Label label15;
 		private System.Windows.Forms.Timer timer1;
@@ -623,5 +655,7 @@
 		private TextoBoxp txtCedula;
 		private System.Windows.Forms.Label labelPercent;
 		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.Label label9;
+		private TextoBoxp textoBoxp3;
 	}
 }

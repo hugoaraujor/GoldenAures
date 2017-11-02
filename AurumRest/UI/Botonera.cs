@@ -153,7 +153,8 @@ namespace AurumRest
 		
 			this.dataGridView1.DataSource = null;
 			this.dataGridView1.DataSource = TicketDoc.lista;
-			label1.Text = String.Format("{0:0.00}", GetSuma());
+   		   txtservicio.Text = String.Format("{0:0.00}", GetSuma() *.10m);
+			labelNeto.Text = String.Format("{0:0.00}", GetSuma());
 			DataGridLayout();
 
 		}
@@ -161,9 +162,7 @@ namespace AurumRest
 		private void DataGridLayout()
 		{
 			Utilities.DataGridLayout(this.dataGridView1);
-
 		}
-
 		private Decimal GetSuma()
 		{
 			Decimal suma = 0;
@@ -230,13 +229,18 @@ namespace AurumRest
 			eliminarBorrados();
 			TicketDoc.lista.Clear();
 			GetSuma();
-
-			g.secuencia.SaveTicket(g.secuencia.newTicket());
-			CurrentTicketNro = g.secuencia.getTicket();
+			nuevoTicket();
 			labelticket.Text = CurrentTicketNro.ToString();
 			dataGridView1.DataSource = null;
 			dataGridView1.Refresh();
 			this.SendToBack();
+		}
+
+		private void nuevoTicket()
+		{
+			g.secuencia.SaveTicket(g.secuencia.newTicket());
+			CurrentTicketNro = g.secuencia.getTicket();
+
 		}
 
 		private void Nohaypedido()
@@ -311,11 +315,11 @@ namespace AurumRest
 
 		private void button8_Click(object sender, EventArgs e)
 		{
-			
-
+			TicketDoc.totales.servicio = calcularservicio();
+		    var paga=GetSuma();
 			eliminarBorrados();
-			
-			TotalForm TF = new TotalForm(TicketDoc.totales.mesa ,GetSuma(), Ivatipo.General);
+
+			TotalForm TF = new TotalForm(TicketDoc.totales.mesa ,paga, TicketDoc.totales.servicio, Ivatipo.General);
 			TF.impresoraconectada = 0;
 			TF.ShowDialog();
 			TicketDoc.totales = TF.TotalesPago;
@@ -326,6 +330,7 @@ namespace AurumRest
 			 //Doble Abstract Factory Printer y Documento
 			 //workerObj.RunWorkerAsync();
 				auxilio();
+				
 			}
 			else
 			{
@@ -334,7 +339,15 @@ namespace AurumRest
 
 			}
 			TF.Dispose();
+			nuevoTicket();
 		}
+
+		private decimal calcularservicio()
+		{
+			var suma = GetSuma()*.10M;
+			return suma;
+		}
+
 		private void auxilio()
 		{
 			IPrinterFIOperaciones IP = new ImpresionBematech();
@@ -343,7 +356,7 @@ namespace AurumRest
 			DocumentManager DocM = new DocumentManager(TicketDoc);
 			if (!(st == ""))
 			{
-				g.secuencia.SaveFactura(st);
+				
 				Console.WriteLine(st);
 
 				DocM.Guardar(st);
@@ -356,22 +369,24 @@ namespace AurumRest
 			{
 				 IP.isAnulada();
 			}
+			g.secuencia.SaveFactura(st);
 		}
 		private void ResetFormValues()
 		{
-			var temp = this.TicketDoc.totales;
-			temp.pagado = 0;
-			temp.resta = 0;
-			temp.descuento = 0;
+			TicketDoc.totales.pagado=0;
+			TicketDoc.totales.resta = 0;
+			TicketDoc.totales.descuento = 0;
 			TicketDoc.lista.Clear();
-			temp.cliente = new Cliente();
-			temp.currentIva = Ivatipo.General;
-			temp.IvaPercent = 0;
+			TicketDoc.totales.currentIva = Ivatipo.General;
+			TicketDoc.totales.cliente = new Cliente();
+			TicketDoc.totales.IvaPercent = 0;
 			dataGridView1.DataSource = null;
 			dataGridView1.Rows.Clear();
 			label4.Text = "0";
 			dataGridView1.Refresh();
-			g.currMesa = new Mesa();
+			TicketDoc.totales.mesa = new Mesa();
+			g.currMesa = TicketDoc.totales.mesa;
+			
 			if (g.secuencia.regresaapunto() == 1)
 			{
 				Diagrama.MuestraMesas();
@@ -427,13 +442,14 @@ namespace AurumRest
 		public void DesocuparMesa(Mesa lamesa)
 		{
 			var mesa2 = mesasM.GetMesa(TicketDoc.totales.mesa.Siglas);
-            TicketDoc.totales.mesa = mesa2;
-			TicketDoc.totales.mesa.Ocupada = false;
-			TicketDoc.totales.mesa.Idocupante = 0;
-			TicketDoc.totales.mesa.Estado = EstadosMesa.Cerrada;
+			TicketDoc.totales = new TotalapagarView();
+			//	.mesa = mesa2;
+			//TicketDoc.totales.mesa.Ocupada = false;
+			//TicketDoc.totales.mesa.Idocupante = 0;
+			//TicketDoc.totales.mesa.Estado = EstadosMesa.Cerrada;
 			mesasM.Edit(TicketDoc.totales.mesa);
-			TicketDoc.totales.mesa = new Mesa();
-			TicketDoc.totales.mesa.Hora = default(DateTime);
+			//TicketDoc.totales.mesa = new Mesa();
+		//	TicketDoc.totales.mesa.Hora = default(DateTime);
 			Diagrama.MuestraMesas();
 		}
 

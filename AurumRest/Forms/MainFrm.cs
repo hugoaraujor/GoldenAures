@@ -178,7 +178,7 @@ namespace AurumRest
 
 		private void cierreZToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			CierreZFrm xf = new CierreZFrm();
+			CierreZFrm xf = new CierreZFrm(Cierreenum.Z);
 			xf.ShowDialog();
 			//IPrinterFIOperaciones IP = new ImpresionBematech();
 			//IP.LecturaZ();

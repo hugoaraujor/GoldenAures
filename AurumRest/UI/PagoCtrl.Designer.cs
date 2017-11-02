@@ -51,7 +51,7 @@
 			this.comboBox1.Size = new System.Drawing.Size(137, 38);
 			this.comboBox1.TabIndex = 4;
 			this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedValueChanged);
-			this.comboBox1.SelectedValueChanged += new System.EventHandler(this.comboBox1_SelectedValueChanged);
+			this.comboBox1.SelectedValueChanged += new System.EventHandler(this.comboBox1_Leave);
 			this.comboBox1.Leave += new System.EventHandler(this.comboBox1_Leave);
 			// 
 			// textoBoxp19
@@ -62,6 +62,7 @@
 			this.textoBoxp19.IsCode = false;
 			this.textoBoxp19.IsDecimal = true;
 			this.textoBoxp19.IsInteger = false;
+			this.textoBoxp19.IsPercent = false;
 			this.textoBoxp19.Location = new System.Drawing.Point(455, 3);
 			this.textoBoxp19.Name = "textoBoxp19";
 			this.textoBoxp19.Size = new System.Drawing.Size(157, 39);

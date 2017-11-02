@@ -25,7 +25,7 @@ namespace AurumRest
 		public int impresoraconectada = 0;
 		public List<Cliente> inicialQuery = new List<Cliente>();
 
-		public TotalForm(Mesa mesa,Decimal paymentAmount, Ivatipo G)
+		public TotalForm(Mesa mesa,Decimal paymentAmount,Decimal exento, Ivatipo G)
 		{
 			InitializeComponent();
 			//getPaymentParams(paymentAmount, G);
@@ -33,8 +33,8 @@ namespace AurumRest
 			TotalesPago = new TotalapagarView();
 			TotalesPago.mesa=mesa;
 			TotalesPago.totalNeto = paymentAmount;
-			
-			
+			TotalesPago.servicio = exento;
+
 			calculaValores(G);
 			//calculaValores(Ivatipo.Reducido);
 			displaytotales();
@@ -50,8 +50,8 @@ namespace AurumRest
 			TotalesPago.IvaPercent = Convert.ToDecimal(ivap);
 			TotalesPago.totalNeto = (TotalesPago.totalNeto);
 			TotalesPago.descuento = descuento;
-			TotalesPago.totalIva = Math.Round((TotalesPago.totalNeto - TotalesPago.descuento) * (TotalesPago.IvaPercent / 100), 2);
-			TotalesPago.total = Math.Round(((TotalesPago.totalNeto - TotalesPago.descuento) * ((TotalesPago.IvaPercent / 100) + 1)), 2);
+			TotalesPago.totalIva = Math.Round((TotalesPago.totalNeto- TotalesPago.descuento) * (TotalesPago.IvaPercent / 100), 2);
+			TotalesPago.total = Math.Round((((TotalesPago.totalNeto - TotalesPago.descuento)  * ((TotalesPago.IvaPercent / 100) + 1))+ TotalesPago.servicio), 2) ;
 			TotalesPago.resta = TotalesPago.total - pagado();
 			TotalesPago.currentIva = iva;
 			TotalesPago.Cambio = 0;
@@ -60,10 +60,10 @@ namespace AurumRest
 		public void AgregaMododePago(string tipo, Decimal d, String Detalle = "", int i = 0)
 		{
 
-			PagoCtrl detPago = new PagoCtrl();
+			PagoCtrl detPago = new PagoCtrl(this);
 			var aux = Enum.TryParse(tipo, out ClasePago myStatus);
 			detPago.SetValues(new MontoPago { ClasePago = myStatus, Monto = d, Tipo = "", Detalle = Detalle, Index = i , Cambio=Math.Abs(pagado()-d)});
-			label13.Text = string.Format("{0:0.00}", d);
+			labelResta.Text = string.Format("{0:0.00}", d);
 			detPago.Name = detPago.Name + i.ToString();
 			detPago.button2.Click += new EventHandler(Agrega);
 			PanelPago.Controls.Add(detPago);
@@ -77,7 +77,7 @@ namespace AurumRest
 
 			if (TotalesPago.resta > 0)
 			{
-				label13.Text = string.Format("{0:0.00}", TotalesPago.resta);
+				labelResta.Text = string.Format("{0:0.00}", TotalesPago.resta);
 				label16.Text = string.Format("{0:0.00}", pagado());
 				AgregaMododePago(pago.ClasePago.ToString(), TotalesPago.resta, pago.Detalle, ipago);
 			}
@@ -90,7 +90,7 @@ namespace AurumRest
 				
 				pictureBox1.Visible = true;
 				label15.ForeColor = Color.DodgerBlue;
-				label13.ForeColor = Color.DodgerBlue;
+				labelResta.ForeColor = Color.DodgerBlue;
 				label15.Text = "CAMBIO:";
 				timer1.Enabled = true;
 				button3.Enabled = true;
@@ -101,9 +101,9 @@ namespace AurumRest
 			{
 				label15.ForeColor = Color.Black;
 				label15.Text = "A Pagar:";
-				label13.ForeColor = Color.Black;
+				labelResta.ForeColor = Color.Black;
 			}
-			label13.Text = string.Format("{0:0.00}", Math.Abs(TotalesPago.resta));
+			labelResta.Text = string.Format("{0:0.00}", Math.Abs(TotalesPago.resta));
 			label16.Text = string.Format("{0:0.00}", pagado());
 			
 		}
@@ -138,6 +138,7 @@ namespace AurumRest
 			textoBoxp1.Text = string.Format("{0:0.00}", TotalesPago.totalNeto);
 			textoBoxp4.Text = string.Format("{0:0}", TotalesPago.IvaPercent);
 			textoBoxp2.Text = string.Format("{0:0.00}", TotalesPago.totalIva);
+			textoBoxp3.Text = string.Format("{0:0.00}", TotalesPago.servicio);
 			txtTotalPagar.Text = string.Format("{0:0.00}", TotalesPago.total);
 		}
 		#region Keys
@@ -204,7 +205,7 @@ namespace AurumRest
 		private void timer1_Tick(object sender, EventArgs e)
 		{
 			label15.Visible = !label15.Visible;
-			label13.Visible = !label13.Visible;
+			labelResta.Visible = !labelResta.Visible;
 		}
 		private void button3_Click(object sender, EventArgs e)
 		{
@@ -212,9 +213,8 @@ namespace AurumRest
 		}
 		private void button3_Click_1(object sender, EventArgs e)
 		{
-			 impresoraconectada=BemaFI32.Bematech_FI_VerificaImpresoraPrendida();
-			
-				this.Close();
+			 //impresoraconectada=BemaFI32.Bematech_FI_VerificaImpresoraPrendida();
+			 this.Close();
 			  
 
 

@@ -28,7 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.FlowPanel = new System.Windows.Forms.FlowLayoutPanel();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.label4 = new System.Windows.Forms.Label();
@@ -47,11 +47,12 @@
 			this.button4 = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.label3 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
-			this.label1 = new System.Windows.Forms.Label();
+			this.labelNeto = new System.Windows.Forms.Label();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
 			this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.label3 = new System.Windows.Forms.Label();
+			this.txtservicio = new System.Windows.Forms.Label();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.flowLayoutPanel1.SuspendLayout();
 			this.panel1.SuspendLayout();
@@ -299,44 +300,34 @@
 			// panel2
 			// 
 			this.panel2.Controls.Add(this.label3);
+			this.panel2.Controls.Add(this.txtservicio);
 			this.panel2.Controls.Add(this.label2);
-			this.panel2.Controls.Add(this.label1);
+			this.panel2.Controls.Add(this.labelNeto);
 			this.panel2.Location = new System.Drawing.Point(607, 579);
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(414, 114);
 			this.panel2.TabIndex = 6;
 			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Font = new System.Drawing.Font("Mistral", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label3.ForeColor = System.Drawing.Color.Silver;
-			this.label3.Location = new System.Drawing.Point(345, 79);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(57, 26);
-			this.label3.TabIndex = 2;
-			this.label3.Text = "AuRest";
-			// 
 			// label2
 			// 
-			this.label2.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label2.Location = new System.Drawing.Point(3, 25);
+			this.label2.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label2.Location = new System.Drawing.Point(36, 53);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(154, 36);
 			this.label2.TabIndex = 1;
 			this.label2.Text = "Neto";
-			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
-			// label1
+			// labelNeto
 			// 
-			this.label1.BackColor = System.Drawing.Color.White;
-			this.label1.Font = new System.Drawing.Font("Segoe UI Emoji", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.Location = new System.Drawing.Point(163, 18);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(219, 43);
-			this.label1.TabIndex = 0;
-			this.label1.Text = "0,00";
-			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.labelNeto.BackColor = System.Drawing.Color.White;
+			this.labelNeto.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.labelNeto.Location = new System.Drawing.Point(163, 46);
+			this.labelNeto.Name = "labelNeto";
+			this.labelNeto.Size = new System.Drawing.Size(219, 43);
+			this.labelNeto.TabIndex = 0;
+			this.labelNeto.Text = "0,00";
+			this.labelNeto.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// dataGridView1
 			// 
@@ -349,14 +340,14 @@
 			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1});
-			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.HotTrack;
-			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-			this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.HotTrack;
+			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+			this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
 			this.dataGridView1.Location = new System.Drawing.Point(607, 61);
 			this.dataGridView1.Name = "dataGridView1";
 			this.dataGridView1.ReadOnly = true;
@@ -378,6 +369,28 @@
 			this.Column1.Name = "Column1";
 			this.Column1.ReadOnly = true;
 			// 
+			// label3
+			// 
+			this.label3.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label3.Location = new System.Drawing.Point(36, 10);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(154, 36);
+			this.label3.TabIndex = 3;
+			this.label3.Text = "Servicio";
+			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// txtservicio
+			// 
+			this.txtservicio.BackColor = System.Drawing.Color.White;
+			this.txtservicio.Enabled = false;
+			this.txtservicio.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtservicio.Location = new System.Drawing.Point(163, 3);
+			this.txtservicio.Name = "txtservicio";
+			this.txtservicio.Size = new System.Drawing.Size(219, 43);
+			this.txtservicio.TabIndex = 2;
+			this.txtservicio.Text = "0,00";
+			this.txtservicio.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
 			// Botonera
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -391,7 +404,6 @@
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			this.panel2.ResumeLayout(false);
-			this.panel2.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -414,14 +426,15 @@
 		private System.Windows.Forms.Button button8;
 		private System.Windows.Forms.DataGridView dataGridView1;
 		private System.Windows.Forms.Panel panel2;
-		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label labelNeto;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
 		private System.Windows.Forms.Button button9;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label labelticket;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Button button10;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.Label txtservicio;
 	}
 }

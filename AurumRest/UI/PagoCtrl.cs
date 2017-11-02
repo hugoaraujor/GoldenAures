@@ -16,16 +16,19 @@ namespace AurumRest
 	{ public MontoPago Pago=new MontoPago();
 		public string clase { get; set; }
 		public bool confirmed { get; set; }
-		public PagoCtrl()
+		public TotalForm Forma { get; set; }
+		public PagoCtrl(TotalForm forma)
 		{
 			InitializeComponent();
 			confirmed = false;
+			Forma = forma;
 		}
         private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
 		{  switch (comboBox1.Text)
 			{
 				case "Efectivo":
                     comboBox3.Enabled = false;
+					comboBox3.Text = "";
 					textoBoxp19.Focus();
 					break;
 				case "Débito":
@@ -84,7 +87,6 @@ namespace AurumRest
 
 		private void confirmapago()
 		{
-			var Forma = (TotalForm)Parent.FindForm();
 			confirmed = true;
 			clase = comboBox1.Text;
 			var pagado = Forma.TotalesPago.pagado;
@@ -92,19 +94,18 @@ namespace AurumRest
 			{
 				Forma.displaytotales();
 				this.textoBoxp19.Text = string.Format("{0:0.00}", ((TotalForm)Forma).TotalesPago.resta);
-				Forma.label13.Text = string.Format("{0:0.00}", Forma.TotalesPago.resta - pagado);
+				Forma.labelResta.Text = string.Format("{0:0.00}", Forma.TotalesPago.resta - pagado);
 
 			}
 		}
 
 		private bool aplicadescuento()
 		{ var Ret = false;
-			var Forma=(TotalForm)Parent.FindForm();
 			var totales = Forma.TotalesPago;
 		    var hayefectivo = Forma.hayEfectivo();
-			var mtotpagar = totales.totalNeto;
+			var mtotpagar = totales.total;
 			Ivatipo iva;
-			if (this.comboBox1.Text != ClasePago.Efectivo.ToString() && (!hayefectivo))
+					if (this.comboBox1.Text != ClasePago.Efectivo.ToString() && (!hayefectivo) )
 			{
 				iva = Ivatipo.General;
 				if (mtotpagar > 0 && mtotpagar <= 2000000)
@@ -121,6 +122,7 @@ namespace AurumRest
 			else
 			{
 				 iva = Ivatipo.General;
+				this.textoBoxp19.Text = string.Format("{0:0.00}", mtotpagar - Forma.TotalesPago.pagado);
 			}
 			Forma.calculaValores(iva, Forma.TotalesPago.descuento);
 			Forma.displaytotales();
@@ -135,7 +137,7 @@ namespace AurumRest
 				Pago.ClasePago = myStatus;
 				Pago.Detalle = this.comboBox3.Text;
 			Pago.Tipo = comboBox1.SelectedIndex.ToString();
-			Pago.Cambio =Math.Abs( Convert.ToDecimal(((TotalForm)Forma).label13.Text) -Pago.Monto);
+			Pago.Cambio =Math.Abs( Convert.ToDecimal(((TotalForm)Forma).labelResta.Text) -Pago.Monto);
 			Pago.ClasePago = myStatus;
 			
 				this.Tag = Pago;

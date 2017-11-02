@@ -12,7 +12,15 @@ namespace AurumRest
 			mesa = new Mesa();
 			mesa.Siglas = "0";
 			mesa.Idmesonero =0;
-		}
+			cliente = new Cliente();
+			totalNeto = 0;
+			totalIva = 0;
+			descuento = 0;
+			exento = 0;
+			servicio = 0;
+			total = 0;
+			factura = "0";
+	}
 
 
 		public Cliente cliente { get; set; }
@@ -20,6 +28,8 @@ namespace AurumRest
 		public Decimal totalIva { get; set; }
 		public Decimal descuento { get; set; }
 		public Decimal total { get; set; }
+		public Decimal exento { get; set; }
+		public Decimal servicio { get; set; }
 		public String factura { get; set; }
 
 		public Decimal pagado { get; set; }
