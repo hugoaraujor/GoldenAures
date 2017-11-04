@@ -12,7 +12,12 @@ namespace AurumRest
 		{
 			return false;
 		}
-
+		public  int estaConectada()
+		{
+			int retorno = 0;
+			retorno = BemaFI32.Bematech_FI_VerificaImpresoraPrendida();
+			return retorno;
+		}
 		public void ImprimeReporteGerencial(List<string> Lista)
 		{
 			foreach (string st in Lista)

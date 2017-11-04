@@ -24,5 +24,6 @@ namespace AurumData
 		public string File { get => file; set => file = value; }
 		public int Mesas { get => mesas; set => mesas = value; }
 		public string Prefijo { get => prefijo; set => prefijo = value; }
+		
 	}
 }

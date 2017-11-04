@@ -19,6 +19,7 @@ namespace AurumRest
 		public abstract void Pagos();
 		public abstract void CierraFactura();
 		public abstract bool isAnulada();
+		public abstract bool esdeLlevar();
 		public abstract int GetLast(ref string NumeroDoc);
 		//Nota de credito
 		public abstract void EmiteNotadeCredito(string facturaNo);

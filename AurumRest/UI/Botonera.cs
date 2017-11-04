@@ -8,7 +8,7 @@ using AurumDataEntity;
 using System.ComponentModel;
 using System.Threading;
 using FiscalPrinterBematech;
-
+using System.Linq;
 namespace AurumRest
 {
 	public partial class Botonera : UserControl
@@ -26,12 +26,12 @@ namespace AurumRest
 		List<int> Borrados = new List<int>();
 		public ProcTicket TicketDoc = new ProcTicket();
 		public int CurrentTicket = 0;
-		public string CurrentMesa = "0";
+		public Mesa CurrentMesa=new Mesa();
 		public int level = 0;
 		public int selection = 0;
 		private int CurrentTicketNro = 0;
 		private Punto padre = new Punto();
-		private Global g = new Global();
+		Global g=new Global();
 		DiagramaMesas Diagrama = null;
 		private void OnUserControlButtonClick()
 		{
@@ -52,9 +52,8 @@ namespace AurumRest
 		{
 			InitializeComponent();
 			Diagrama = diagrama;
-			CurrentMesa = "0";
-			CurrentTicketNro = g.secuencia.getTicket();
-			label4.Text = CurrentMesa;
+			CurrentTicketNro = g.store.getTicket();
+			label4.Text = CurrentMesa.Siglas;
 			TicketDoc.ticketNro = CurrentTicketNro;
 			labelticket.Text = CurrentTicketNro.ToString();
 			var s = new Mesa();
@@ -63,10 +62,10 @@ namespace AurumRest
 			Opciones = lista;
 			SubOpciones = subopcion;
 			displayOpciones(lista, false);
-			CurrentMesa = g.currMesa.Siglas;
+			//CurrentMesa = g.currMesa.Siglas;
 			TicketDoc.totales.mesa = s;
-			CurrentTicketNro = g.secuencia.getTicket();
-			label4.Text = CurrentMesa;
+			CurrentTicketNro = g.store.getTicket();
+			label4.Text = CurrentMesa.Siglas;
 			workerObj.DoWork += new DoWorkEventHandler(WorkerObj_DoWork);
 			workerObj.RunWorkerCompleted += WorkerObj_RunWorkerCompleted;
 
@@ -92,8 +91,8 @@ namespace AurumRest
 				control.Click += new EventHandler(OnClickButton);
 				control.BackColor = Color.Aquamarine;
 				control.BackgroundImageLayout = ImageLayout.Zoom;
-				control.ForeColor = g.secuencia.getFont().color;
-				control.Font = new Font(g.secuencia.getFont().Familia, g.secuencia.getFont().Tamaño);
+				control.ForeColor = g.store.getFont().color;
+				control.Font = new Font(g.store.getFont().Familia, g.store.getFont().Tamaño);
 
 				if (lista[i].file != null)
 				{
@@ -121,11 +120,12 @@ namespace AurumRest
 					Nombre = Producto.Nombre,
 					Codigoproducto = Producto.Codigo,
 					Cant = 1,
+					Cuenta=(int)this.cuenta.Value,
 					Factura = "",
 					Nota = "",
 					Neto = Producto.PrecioNeto,
 					Monto = Producto.PrecioNeto * 1,
-					Mesa = CurrentMesa,
+					Mesa = CurrentMesa.Siglas,
 					Ticket = CurrentTicketNro,
 					Notas = "",
 					Adicionales = "",
@@ -153,7 +153,10 @@ namespace AurumRest
 		
 			this.dataGridView1.DataSource = null;
 			this.dataGridView1.DataSource = TicketDoc.lista;
-   		   txtservicio.Text = String.Format("{0:0.00}", GetSuma() *.10m);
+			if (TicketDoc.totales.mesa.Siglas != "0")
+			{
+				txtservicio.Text = String.Format("{0:0.00}", GetSuma() * .10m);
+			}
 			labelNeto.Text = String.Format("{0:0.00}", GetSuma());
 			DataGridLayout();
 
@@ -173,6 +176,9 @@ namespace AurumRest
 					suma = suma + (d.Cant * d.Monto);
 				}
 			}
+			else
+			{ suma = 0; }
+
 			return suma;
 		}
 		private void button1_Click(object sender, EventArgs e)
@@ -210,11 +216,25 @@ namespace AurumRest
 		}
 		private void button7_Click(object sender, EventArgs e)
 		{
-
-			if (CurrentMesa == "0" && !ordenvacia())
+			var esta = ordenvacia();
+			if (CurrentMesa.Siglas == "0" && !esta)
 				return;
 
 			Nohaypedido();
+			grabaItemsCompra();
+			eliminarBorrados();
+			TicketDoc.lista.Clear();
+			GetSuma();
+			nuevoTicket();
+			labelticket.Text = CurrentTicketNro.ToString();
+			dataGridView1.DataSource = null;
+			dataGridView1.Refresh();
+			refreshView();
+			this.SendToBack();
+		}
+
+		private void grabaItemsCompra()
+		{
 			int n = 0;
 			foreach (TicketDetalle t in TicketDoc.lista)
 			{
@@ -226,29 +246,21 @@ namespace AurumRest
 					t.Id = n;
 				}
 			}
-			eliminarBorrados();
-			TicketDoc.lista.Clear();
-			GetSuma();
-			nuevoTicket();
-			labelticket.Text = CurrentTicketNro.ToString();
-			dataGridView1.DataSource = null;
-			dataGridView1.Refresh();
-			this.SendToBack();
 		}
 
 		private void nuevoTicket()
 		{
-			g.secuencia.SaveTicket(g.secuencia.newTicket());
-			CurrentTicketNro = g.secuencia.getTicket();
+			g.store.SaveTicket(g.store.newTicket());
+			CurrentTicketNro = g.store.getTicket();
 
 		}
 
 		private void Nohaypedido()
 		{
-			if (CurrentMesa == "0")
+			if (CurrentMesa.Siglas == "0")
 				return;
 
-			if ((CurrentMesa != "0") && !(TicketManager.tienePedidos(CurrentMesa)))
+			if ((CurrentMesa.Siglas != "0") && !(TicketManager.tienePedidos(CurrentMesa.Siglas)) && ordenvacia())
 			{
 				DesocuparMesa(TicketDoc.totales.mesa);
 			}
@@ -315,10 +327,26 @@ namespace AurumRest
 
 		private void button8_Click(object sender, EventArgs e)
 		{
-			TicketDoc.totales.servicio = calcularservicio();
-		    var paga=GetSuma();
+			if (TicketDoc.totales.mesa.Siglas != "0" )
+			{
+				grabaItemsCompra();
+				TicketDoc.lista = TicketManager.GetList(TicketDoc.totales.mesa.Siglas);
+				GetSuma();
+				refreshView();
+			}
+			if (TicketDoc.totales.mesa.Siglas != "0" || TicketDoc.totales.mesa.Siglas.Contains("LL"))
+				{ TicketDoc.totales.servicio = calcularservicio();
+			 	}
+		
+			var paga=GetSuma();
 			eliminarBorrados();
 
+			IPrinterFIOperaciones IP = new ImpresionBematech();
+			if (IP.estaConectada()==0)
+			{
+				MessageBox.Show("Impresora No Conectada");
+				return;
+			}
 			TotalForm TF = new TotalForm(TicketDoc.totales.mesa ,paga, TicketDoc.totales.servicio, Ivatipo.General);
 			TF.impresoraconectada = 0;
 			TF.ShowDialog();
@@ -330,16 +358,11 @@ namespace AurumRest
 			 //Doble Abstract Factory Printer y Documento
 			 //workerObj.RunWorkerAsync();
 				auxilio();
-				
+			
 			}
-			else
-			{
-				if(TF.impresoraconectada == 0)
-				MessageBox.Show("La Impresora está apagada o Desconectada.");
-
-			}
+			
 			TF.Dispose();
-			nuevoTicket();
+			TF = null;
 		}
 
 		private decimal calcularservicio()
@@ -353,12 +376,12 @@ namespace AurumRest
 			IPrinterFIOperaciones IP = new ImpresionBematech();
 			var st = IP.Facturar(TicketDoc);
 			TicketDoc.totales.factura = st;
-			DocumentManager DocM = new DocumentManager(TicketDoc);
+			
 			if (!(st == ""))
 			{
 				
 				Console.WriteLine(st);
-
+				DocumentManager DocM = new DocumentManager(TicketDoc);
 				DocM.Guardar(st);
 				if (st != "")
 				{
@@ -369,10 +392,12 @@ namespace AurumRest
 			{
 				 IP.isAnulada();
 			}
-			g.secuencia.SaveFactura(st);
+			g.store.SaveFactura(st);
+			nuevoTicket();
 		}
 		private void ResetFormValues()
 		{
+			//TicketDoc.totales = new TotalapagarView();
 			TicketDoc.totales.pagado=0;
 			TicketDoc.totales.resta = 0;
 			TicketDoc.totales.descuento = 0;
@@ -380,6 +405,7 @@ namespace AurumRest
 			TicketDoc.totales.currentIva = Ivatipo.General;
 			TicketDoc.totales.cliente = new Cliente();
 			TicketDoc.totales.IvaPercent = 0;
+			//TicketDoc = new ProcTicket();
 			dataGridView1.DataSource = null;
 			dataGridView1.Rows.Clear();
 			label4.Text = "0";
@@ -387,7 +413,7 @@ namespace AurumRest
 			TicketDoc.totales.mesa = new Mesa();
 			g.currMesa = TicketDoc.totales.mesa;
 			
-			if (g.secuencia.regresaapunto() == 1)
+			if (g.store.regresaapunto() == 1)
 			{
 				Diagrama.MuestraMesas();
 				Diagrama.Cambia();
@@ -403,7 +429,7 @@ namespace AurumRest
 
 		private void button9_Click_1(object sender, EventArgs e)
 		{
-			if (CurrentMesa == "0" && ordenvacia())
+			if (CurrentMesa.Siglas == "0" && ordenvacia())
 				return;
 			Diagrama.Cambia();
 			this.SendToBack();
@@ -411,25 +437,34 @@ namespace AurumRest
 
 		private bool ordenvacia()
 		{
-			bool resp = false;
-			if (this.dataGridView1.Rows.Count <=0)
-				resp = true;
+			bool resp = true;
+			if (this.dataGridView1.Rows.Count >0)
+				resp = false;
 
 			return resp;
 		}
 
-		public void Cambia()
+		public void Cambia(Mesa mesaSelected)
 		{
+			CurrentMesa = mesaSelected;
 			var dMesas = Diagrama;
-			CurrentMesa = dMesas.GetMesa();
-			this.label4.Text = dMesas.GetMesa();
+			this.label4.Text = dMesas.GetMesa().Siglas;
+			TicketDoc.totales.mesa = CurrentMesa;
 			TicketDoc.totales.mesa.Siglas=label4.Text;
+			if (CurrentMesa.MultiplesCuentas)
+			{
+				cuenta.Visible = true;
+			}
+			else
+			{
+				cuenta.Visible = false;
+			}
 			labelticket.Text = CurrentTicketNro.ToString();
 			if (dMesas.totaliza)
 			{
 
-				TicketDoc.totales.mesa = mesasM.GetMesa(TicketDoc.totales.mesa.Siglas);
-				TicketDoc.lista = TicketManager.GetList(dMesas.GetMesa(), 0);
+				//TicketDoc.totales.mesa = TicketDoc.totales.mesa;
+				TicketDoc.lista = TicketManager.GetList(dMesas.GetMesa().Siglas, 0);
 				refreshView();
 
 			}
@@ -442,14 +477,10 @@ namespace AurumRest
 		public void DesocuparMesa(Mesa lamesa)
 		{
 			var mesa2 = mesasM.GetMesa(TicketDoc.totales.mesa.Siglas);
-			TicketDoc.totales = new TotalapagarView();
-			//	.mesa = mesa2;
-			//TicketDoc.totales.mesa.Ocupada = false;
-			//TicketDoc.totales.mesa.Idocupante = 0;
-			//TicketDoc.totales.mesa.Estado = EstadosMesa.Cerrada;
+			TicketDoc.totales.mesa.Idmesa = mesa2.Idmesa;
+			TicketDoc.totales.mesa.Ocupada = false;
+			TicketDoc.totales.mesa.Estado=EstadosMesa.Disponible;
 			mesasM.Edit(TicketDoc.totales.mesa);
-			//TicketDoc.totales.mesa = new Mesa();
-		//	TicketDoc.totales.mesa.Hora = default(DateTime);
 			Diagrama.MuestraMesas();
 		}
 
@@ -473,7 +504,7 @@ namespace AurumRest
 			DocumentManager DocM = new DocumentManager(TicketDoc);
 			if (!(e.Result.ToString() == ""))
 			{
-				g.secuencia.SaveFactura(e.Result.ToString());
+				g.store.SaveFactura(e.Result.ToString());
 				Console.WriteLine(e.Result.ToString());
 
 				DocM.Guardar(e.Result.ToString());
@@ -493,20 +524,26 @@ namespace AurumRest
 				TMngr.Delete(TicketDoc.totales.mesa.Siglas);
 				DesocuparMesa(TicketDoc.totales.mesa);
 			}
+			
 			ResetFormValues();
 			refreshView();
 		}
 
 		private void button10_Click(object sender, EventArgs e)
 		{
-			//string nrosigultfactura = "995555";
-			//FacturasManager fm = new FacturasManager();
-			//fm.Insert(new AurumDataEntity.FacturaDTO { Anulada = true, ClienteID = 0, Montoneto = 0, Descuento = 0, Total = 0, Tasa = 0, Equipo = Global.Instancia.equipo, Caja = "", Facturanro = nrosigultfactura, Mesa = "0", Moneda = "", Serial = Global.Instancia.GetParametros().Serial, Sirve = 0, Userid = 0, Nota = "" });
-			//fm.Insert(new AurumDataEntity.FacturaDTO { Anulada = true, ClienteID = 0, Montoneto = 0, Descuento = 0, Total = 0, Tasa = 0, Equipo = Global.Instancia.equipo, Caja = "", Facturanro = nrosigultfactura, Mesa = "0", Moneda = "", Serial = Global.Instancia.GetParametros().Serial, Sirve = 0, Userid = 0, Nota = "" });
-			BemaFI32.Bematech_FI_InformeTransacciones("","31/10/2017","31/10/2017","");
+			var NumeroDoc = "       ";
+			int iretorno = BemaFI32.Bematech_FI_NumeroComprobanteFiscal(ref NumeroDoc);
+			var fm = new FacturasManager();
 			BemaFI32.Bematech_FI_AnulaCupon();
-		//	IPrinterFIOperaciones IP = new ImpresionBematech();
-			//IP.EmiteNotadeCredito("000002");
+			using (var db = new Data())
+			{
+				var pac = (from p in db.Facturas where p.Facturanro == "000001" select p).FirstOrDefault();
+				
+			}
+			MesonerosManager MCtrller = new MesonerosManager();
+			var aux= new Mesonero();
+			aux.Idmesonero = 2;
+			var atiende = MCtrller.getMesero((int)aux.Idmesonero).Nombre;
 		}
 	}
 

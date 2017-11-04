@@ -2,6 +2,7 @@
 using AurumDataEntity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
@@ -11,49 +12,74 @@ namespace AurumBusiness.Controllers
 {
 	public class FacturasManager
 	{
+		#region Existe
+
+		public bool ExisteFact(string facturaserie)
+		{
+			bool resp = false;
+
+			try
+			{
+				using (var db = new Data())
+				{
+					var query = (from x in db.Facturas where x.Facturanro == facturaserie select x).FirstOrDefault<Factura>();
+
+					if (query != null)
+						resp = true;
+					//var query = (db.Facturas.Where(u => u.Facturanro.Trim() == facturaserie.Trim()).Any());
+
+				}
+			}
+			catch (MyException ex)
+			{
+				Console.WriteLine(ex.Message);
+				Console.WriteLine("erro");
+			}
+
+			return resp;
+
+
+		}
+		#endregion
 		#region Insert
 
 		public void Insert(FacturaDTO NewClase)
 		{
-			var x = NewClase;
+			var x=NewClase;
+			var pac = new Factura();
+
+			pac.Caja = x.Caja;
+				pac.Descuento = x.Descuento;
+			pac.Equipo = x.Equipo;
+			pac.Facturanro = x.Facturanro;
+			pac.Montoiva = x.Montoiva;
+			pac.Mesa = x.Mesa;
+			pac.Montoneto = x.Montoneto;
+				pac.Nota = x.Nota;
+				pac.Serial = x.Serial;
+				pac.Sirve = x.Sirve;
+			pac.Tasa = x.Tasa;
+				pac.Total = x.Total;
+				pac.Userid = x.Userid;
+			pac.ClienteID = x.ClienteID;
+			pac.Moneda = x.Moneda;
+			pac.Anulada = x.Anulada;
+			pac.Exento = 0;
+				pac.Fecha = Convert.ToDateTime(DateTime.Now);
+				pac.Cierrex = x.Cierrex;
+				pac.Cierrez = x.Cierrez;
+				pac.Id = 0;
+
+
+		
 			using (var db = new Data())
 			{
-				db.Facturas.Add(new Factura()
-				{
-
-					Caja = x.Caja,
-					Descuento = x.Descuento,
-					Equipo = x.Equipo,
-					Facturanro = x.Facturanro,
-					Montoiva=x.Montoiva,
-                    Mesa = x.Mesa,
-					Montoneto = x.Montoneto,
-					Nota = x.Nota,
-					Serial = x.Serial,
-					Sirve = x.Sirve,
-					Tasa = x.Tasa,
-					Total = x.Total,
-					Userid = x.Userid,
-					ClienteID = x.ClienteID,
-					Moneda = x.Moneda,
-					Anulada = x.Anulada,
-					Exento=0,
-					Fecha=DateTime.Now,
-					Cierrex=x.Cierrex,
-					Cierrez = x.Cierrez
-
-				});
-				try
-				{
-					db.SaveChanges();
-				}
-				catch (Exception e)
-				{
-					Console.WriteLine(e);
-				}
-
-
+				db.Facturas.Add(pac);
+				db.Entry(pac).State = System.Data.Entity.EntityState.Added;
+				db.SaveChanges();
 			}
+
+			
 		}
 
 		#endregion
@@ -63,35 +89,20 @@ namespace AurumBusiness.Controllers
 		{
 			using (var db = new Data())
 			{
-				Factura query = (from x in db.Facturas
+				var query = (from x in db.Facturas
 										where x.Facturanro == Factura
 										select x).FirstOrDefault<Factura>();
 				if (query != null)
 				{
 					db.Facturas.Remove(query);
+					db.Entry(query).State = EntityState.Deleted;
 					db.SaveChanges();
 				}
 			}
 		}
 
 		#endregion
-		#region Existe
-
-		public bool Existe(string factura)
-		{
-			bool resp = false;
-			using (var db = new Data())
-			{
-				Factura query= (from x in db.Facturas where x.Facturanro == factura select x).FirstOrDefault();
-				if (query != null)
-				{
-					resp = true;
-				}
-
-			}
-			return resp;
-		}
-		#endregion
+		
 
 
 		#region Edit
@@ -125,6 +136,7 @@ namespace AurumBusiness.Controllers
 						pac.Moneda = x.Moneda;
 						pac.Cierrex = x.Cierrex;
 						pac.Cierrez = x.Cierrez;
+						pac.Fecha = x.Fecha;
 						db.SaveChanges();
 					}
 
@@ -163,6 +175,17 @@ namespace AurumBusiness.Controllers
 			}
 			catch (DbEntityValidationException e)
 			{ }
+		}
+
+		public Factura GetFactura(string Facturanro)
+		{
+			using (var db = new Data())
+			{
+				var pac = (from p in db.Facturas where p.Facturanro == Facturanro select p).FirstOrDefault();
+
+				return pac;
+			}
+
 		}
 		#endregion
 

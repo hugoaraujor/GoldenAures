@@ -28,8 +28,8 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DetalleMesaForm));
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
 			this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,6 +41,7 @@
 			this.label3 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
+			this.labelMesa = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.panel1.SuspendLayout();
@@ -55,28 +56,28 @@
 			this.dataGridView1.AllowUserToResizeRows = false;
 			this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
 			this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
 			this.dataGridView1.ColumnHeadersHeight = 45;
 			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
 			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1});
-			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-			dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.HotTrack;
-			dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-			this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.HotTrack;
+			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+			this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
 			this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.dataGridView1.Location = new System.Drawing.Point(33, 77);
+			this.dataGridView1.Location = new System.Drawing.Point(33, 92);
 			this.dataGridView1.Name = "dataGridView1";
 			this.dataGridView1.ReadOnly = true;
 			this.dataGridView1.RowHeadersVisible = false;
@@ -88,7 +89,7 @@
 			this.dataGridView1.ShowCellToolTips = false;
 			this.dataGridView1.ShowEditingIcon = false;
 			this.dataGridView1.ShowRowErrors = false;
-			this.dataGridView1.Size = new System.Drawing.Size(477, 400);
+			this.dataGridView1.Size = new System.Drawing.Size(477, 385);
 			this.dataGridView1.TabIndex = 6;
 			this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
 			this.dataGridView1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dataGridView1_KeyPress);
@@ -112,8 +113,8 @@
 			this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
 			this.tableLayoutPanel1.RowCount = 3;
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15.41667F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 84.58334F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.54167F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 81.45834F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 72F));
 			this.tableLayoutPanel1.Size = new System.Drawing.Size(548, 553);
 			this.tableLayoutPanel1.TabIndex = 7;
@@ -141,29 +142,32 @@
 			// 
 			// panel2
 			// 
+			this.panel2.Controls.Add(this.labelMesa);
 			this.panel2.Controls.Add(this.label4);
 			this.panel2.Controls.Add(this.label3);
 			this.panel2.Controls.Add(this.label2);
 			this.panel2.Controls.Add(this.label1);
 			this.panel2.Location = new System.Drawing.Point(33, 3);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(477, 68);
+			this.panel2.Size = new System.Drawing.Size(477, 83);
 			this.panel2.TabIndex = 8;
 			// 
 			// label4
 			// 
 			this.label4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label4.Location = new System.Drawing.Point(81, 29);
+			this.label4.ForeColor = System.Drawing.Color.Gray;
+			this.label4.Location = new System.Drawing.Point(181, 49);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(393, 30);
+			this.label4.Size = new System.Drawing.Size(292, 30);
 			this.label4.TabIndex = 3;
 			// 
 			// label3
 			// 
 			this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label3.Location = new System.Drawing.Point(81, 6);
+			this.label3.ForeColor = System.Drawing.Color.Gray;
+			this.label3.Location = new System.Drawing.Point(179, 15);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(396, 32);
+			this.label3.Size = new System.Drawing.Size(295, 32);
 			this.label3.TabIndex = 2;
 			this.label3.Text = "Mesero";
 			// 
@@ -171,7 +175,8 @@
 			// 
 			this.label2.AutoSize = true;
 			this.label2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label2.Location = new System.Drawing.Point(17, 39);
+			this.label2.ForeColor = System.Drawing.Color.Gray;
+			this.label2.Location = new System.Drawing.Point(114, 59);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(58, 20);
 			this.label2.TabIndex = 1;
@@ -181,11 +186,22 @@
 			// 
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.Location = new System.Drawing.Point(17, 6);
+			this.label1.ForeColor = System.Drawing.Color.Gray;
+			this.label1.Location = new System.Drawing.Point(114, 15);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(58, 20);
 			this.label1.TabIndex = 0;
 			this.label1.Text = "Mesero";
+			// 
+			// labelMesa
+			// 
+			this.labelMesa.Font = new System.Drawing.Font("Segoe UI", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.labelMesa.ForeColor = System.Drawing.Color.CornflowerBlue;
+			this.labelMesa.Location = new System.Drawing.Point(3, 2);
+			this.labelMesa.Name = "labelMesa";
+			this.labelMesa.Size = new System.Drawing.Size(105, 77);
+			this.labelMesa.TabIndex = 4;
+			this.labelMesa.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// DetalleMesaForm
 			// 
@@ -220,5 +236,6 @@
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label labelMesa;
 	}
 }

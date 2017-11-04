@@ -28,7 +28,12 @@ namespace AurumData
 		private bool debito;
 		public Cliente()
 		{
-
+			identificacion = "V-0000000";
+			nombre = "";
+			direccion = "";
+			telefono = "";
+			credito = false;
+			debito = false;
 		}
 		[Key]
 		[Column(Order = 1)]

@@ -64,6 +64,8 @@ namespace AurumRest
 					Iva = t.Montoiva,
 					Monto = t.Monto,
 					 Nota = t.Nota,
+					 
+
 					Id = 0
 
 				});
@@ -72,20 +74,15 @@ namespace AurumRest
 
 		private void InsertarHeader()
 		{
-			Global g=new Global();
-			var parametros = g.GetParametros();
+	
+			Global g = new Global();
+			var parametros =  g.GetParametros();
+			var user = g.Usuario().Iduser;
 			FacturasManager fMng = new FacturasManager();
 			int mesonero;
-			try
-			{
-				mesonero = (int)ticketDoc.totales.mesa.Idmesonero;
-			}
-			catch
-			{
-				mesonero = 0;
-			}
-			var user = g.Usuario().Iduser;
-
+			mesonero = (int)ticketDoc.totales.mesa.Idmesonero;
+			//g.Usuario().Iduser
+			user = 1;
 
 			fMng.Insert(
 				new FacturaDTO
@@ -103,13 +100,15 @@ namespace AurumRest
 					Montoneto = ticketDoc.totales.totalNeto,
 					Serial = parametros.Serial,
 					Sirve = mesonero,
-					Tasa = Convert.ToDecimal(g.secuencia.getIva(ticketDoc.totales.currentIva)),
+					Tasa = Convert.ToDecimal(g.store.getIva(ticketDoc.totales.currentIva)),
 					Total = ticketDoc.totales.total,
-					Userid = user 
-					 
-					
-				});
-			//g.Usuario().Iduser
+					Userid = user,
+					Cierrex = "0",
+					Cierrez = "0",
+					Exento = ticketDoc.totales.exento,
+					Fecha = Convert.ToDateTime(DateTime.Now)
+					});
+			
 		}
 
 

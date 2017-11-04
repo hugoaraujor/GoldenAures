@@ -19,6 +19,7 @@ namespace AurumData
 		{
 			this.detalle = detalle;
 			this.cambio = cambio;
+			this.nota = "";
 		}
 
 		public  int idpago { get; set; }

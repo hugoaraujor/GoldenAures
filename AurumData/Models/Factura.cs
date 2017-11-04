@@ -15,17 +15,18 @@ namespace AurumData
 		[Column(Order = 1)]
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		private int id;
+		[StringLength(7)]
 		private string facturanro;
-		[StringLength(15)]
+		[StringLength(7)]
 		private string nota;
 		[DataType(DataType.Currency)]
 		private Decimal montoneto;
 		[DataType(DataType.Currency)]
 		private Decimal montoiva;
 		[DataType(DataType.Currency)]
-		private Decimal total;
-		[DataType(DataType.Currency)]
 		private Decimal exento;
+		[DataType(DataType.Currency)]
+		private Decimal total;
 		[StringLength(15)]
 		private string caja;
 		[StringLength(10)]
@@ -44,43 +45,37 @@ namespace AurumData
 		[StringLength(5)]
 		private string moneda;
 		private bool anulada;
+		[StringLength(7)]
+		private string cierrex;
+		[StringLength(7)]
+		private string cierrez;
 		[DataType(DataType.DateTime)]
 		private DateTime fecha;
-		[StringLength(6)]
-		private string cierrex;
-		[StringLength(6)]
-		private string cierrez;
+
 		public Factura()
 		{
 			
 		}
-		[StringLength(10)]
-		public string Facturanro { get => facturanro; set => facturanro = value; }
 		public int Id { get => id; set => id = value; }
-		[StringLength(160)]
+		public string Facturanro { get => facturanro; set => facturanro = value; }
 		public string Nota { get => nota; set => nota = value; }
 		public decimal Montoneto { get => montoneto; set => montoneto = value; }
+		public decimal Montoiva { get => montoiva; set => montoiva = value; }
+		public decimal Exento { get => exento; set => exento = value; }
 		public decimal Total { get => total; set => total = value; }
-		[StringLength(12)]
 		public string Caja { get => caja; set => caja = value; }
-		[StringLength(10)]
 		public string Mesa { get => mesa; set => mesa = value; }
 		public int Sirve { get => sirve; set => sirve = value; }
 		public int ClienteID { get => clienteID; set => clienteID = value; }
 		public int Userid { get => userid; set => userid = value; }
 		public decimal Descuento { get => descuento; set => descuento = value; }
 		public decimal Tasa { get => tasa; set => tasa = value; }
-		[StringLength(15)]
 		public string Equipo { get => equipo; set => equipo = value; }
-		[StringLength(15)]
 		public string Serial { get => serial; set => serial = value; }
-		[StringLength(5)]
 		public string Moneda { get => moneda; set => moneda = value; }
 		public bool Anulada { get => anulada; set => anulada = value; }
-		public decimal Exento { get => exento; set => exento = value; }
-		public DateTime Fecha { get => fecha; set => fecha = value; }
-		public decimal Montoiva { get => montoiva; set => montoiva = value; }
 		public string Cierrex { get => cierrex; set => cierrex = value; }
 		public string Cierrez { get => cierrez; set => cierrez = value; }
+		public DateTime Fecha { get => fecha; set => fecha = value; }
 	}
 }

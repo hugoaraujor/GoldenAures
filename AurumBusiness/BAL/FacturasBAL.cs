@@ -1,4 +1,5 @@
 ﻿using AurumBusiness.Controllers;
+using AurumData;
 using AurumDataEntity;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,18 @@ namespace AurumBusiness.BAL
 		public void Delete(string fac)
 		{
 			UManager.Delete(fac);
+		}
+		public bool Existe(string fac)
+		{
+			bool resp = false;
+			resp=UManager.ExisteFact(fac);
+			return resp;
+		}
+		public Factura GetFactura(string fac)
+		{
+			Factura resp;
+			resp = UManager.GetFactura(fac);
+			return resp;
 		}
 	}
 }

@@ -16,10 +16,11 @@ namespace AurumRest
 	public partial class DiagramaMesas : UserControl
 	{
 		MesonerosManager m = new MesonerosManager();
-		 public Global  g=Global.Instancia;
-		int currentArea = 0;
+		  Global  g=new Global();
+	//	int currentAreaid = 0;
+		Area area=new Area();
 		AreaManager areaControl = new AreaManager();
-		MesasManager mesaManager = new MesasManager();
+		public MesasManager mesaManager = new MesasManager();
 		List<Mesa> mesas = new List<Mesa>();
 		Mesa currentMesa = new Mesa();
 		int nmesas = 0;
@@ -42,15 +43,15 @@ namespace AurumRest
 			MessageBox.Show("esprimero);");
 		}
 
-		public string GetMesa()
+		public Mesa GetMesa()
 		{
-			return currentMesa.Siglas;
+			return currentMesa;
 		}
 		private void button1_Click(object sender, EventArgs e)
 		{
 			this.currentMesa.Siglas = "0";
 			g.SetMesa(this.currentMesa);
-			botonera.Cambia();
+			botonera.Cambia(this.currentMesa);
 			this.SendToBack();
 		}
 		private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -65,14 +66,14 @@ namespace AurumRest
 			{
 				try
 				{
-					currentArea = (int)listBox1.SelectedValue;
+					area.Areaid = (int)listBox1.SelectedValue;
 				}
 				catch
 				{
 		//			currentArea = -1;
 				}
-				nmesas = areaControl.GetTotalMesas(currentArea);
-				ShowMesas(this.flowLayoutPanel2, currentArea,nmesas);
+				nmesas = areaControl.GetTotalMesas(area.Areaid);
+				ShowMesas(this.flowLayoutPanel2, area.Areaid, nmesas);
 			}
 		}
 
@@ -96,17 +97,18 @@ namespace AurumRest
 				control.Text = siglas;
 
 				control.Tag = i;
-				control.KeyDown += new KeyEventHandler(ViewTable);
+				//control.KeyDown += new KeyEventHandler(ViewTable);
 				control.Click += new EventHandler(OnClickButton);
 				control.BackColor =Color.LightGray; 
 				control.BackgroundImage = button9.BackgroundImage;
+				
 				control.BackgroundImageLayout = ImageLayout.Center;
-				control.ForeColor = g.secuencia.getFont().color;
+				control.ForeColor = g.store.getFont().color;
 				control.ForeColor = Color.WhiteSmoke;
 				var siExisteMesa = mesaManager.Existemesa(siglas);
 				if (!(siExisteMesa))
 				{
-					mesaManager.InsertClase(new AurumDataEntity.MesaDTO { Area = currentArea, Estado = 0, Hora = DateTime.Now, Siglas = control.Text, idmesonero = 0, idocupante = 0, Ocupada = false });
+					mesaManager.InsertClase(new AurumDataEntity.MesaDTO { Area = area.Areaid, Estado = 0, Hora = DateTime.Now, Siglas = control.Text, idmesonero = 0, idocupante = 0, Ocupada = false });
 				}
 				else
 				{
@@ -114,6 +116,11 @@ namespace AurumRest
 					currentMesa = mesaManager.GetMesa(siglas);
 					if (currentMesa.Estado == EstadosMesa.Ocupada && currentMesa.Ocupada)
 					{
+						if (currentMesa.MultiplesCuentas)
+						{
+							control.Image = button9.Image;
+						}
+						control.ImageAlign = ContentAlignment.BottomRight;
 						control.BackgroundImage = button8.BackgroundImage;
 						control.BackColor = Color.FromArgb(143, 170, 220); 
 						control.ForeColor = Color.White;
@@ -130,18 +137,14 @@ namespace AurumRest
 
 			}
 		}
-		private void ViewTable(object sender, KeyEventArgs e)
+		private void ViewTable()
 		{
 			MesasManager tk = new MesasManager();
-			var mesa=((Button)sender).Text;
+			var mesa = currentMesa.Siglas;
 			Mesa lamesaesta = tk.GetMesa(mesa);
-			
-			if (e.KeyCode == Keys.F2 && lamesaesta.Ocupada)
-			{
-				DetalleMesaForm dt = new DetalleMesaForm(((Button)sender).Text);
-				dt.ShowDialog();
-			}
-
+			DetalleMesaForm dt = new DetalleMesaForm(lamesaesta.Siglas);
+			dt.ShowDialog();
+		
 		}
 		void OnClickButton(object sender, EventArgs e)
 		{
@@ -156,15 +159,10 @@ namespace AurumRest
 			{ button5.Text = "Abrir";
 			  label4.Text = "DISPONIBLE";
 			}
-			
-		
-
 		}
 		public void Cambia()
 		{
-		
 			MuestraMesas();
-			MessageBox.Show("cambia");
 		}
 		private void DiagramaMesas_Load(object sender, EventArgs e)
 		{
@@ -178,58 +176,70 @@ namespace AurumRest
 
 		private void button5_Click(object sender, EventArgs e)
 		{
-
+			totaliza = false;
 
 			g.SetMesa(this.currentMesa);
-			botonera.Cambia();
+		//	currentMesa = this.currentMesa;
+			botonera.Cambia(this.currentMesa);
 			if (((Button)sender).Text == "Abrir")
 			{
 				DialogResult Dresult = AbrirMesa(this.currentMesa.Siglas);
-				if (Dresult == DialogResult.OK)
-				{
-					mesaManager.Edit(currentMesa);
+				
+				//if (Dresult == DialogResult.OK)
+				//{
+				//	currentMesa.Ocupada = true;
+				//	currentMesa.Estado = EstadosMesa.Ocupada;
+					
+				//	this.mesaManager.Edit(currentMesa);
 
-				}
+				//}
 			}
 			if (((Button)sender).Text != "Abrir")
 			{
 				this.SendToBack();
 			}
-			secuencia.getTicket();
+			g.store.getTicket();
 		}
 
 		private DialogResult AbrirMesa(string mesa)
 		{
-			AbrirMesaFrm am = new AbrirMesaFrm();
-			am.ShowDialog();
-			if (am.DialogResult != DialogResult.OK)
-				mesaManager.ChangeStatusMesa(currentMesa, am.abrirmesaResults);
+			
+			using (AbrirMesaFrm am = new AbrirMesaFrm() )
+			{
+				am.ShowDialog();
+				if (am.DialogResult == DialogResult.OK)
+				{
+					mesaManager.ChangeStatusMesa(currentMesa, am.abrirmesaResults);
+				}
+			
 			if (currentMesa.Estado == EstadosMesa.Ocupada)
 			{ button5.Text = "Ordenar"; }
 			else
 			{ button5.Text = "Abrir"; }
 			refrescar();
 			return am.DialogResult;
+			}
 		}
 
 		private void refrescar()
 		{
-			ShowMesas(this.flowLayoutPanel2, currentArea,nmesas);
+			ShowMesas(this.flowLayoutPanel2, area.Areaid, nmesas);
 		}
 
 		private void button2_Click(object sender, EventArgs e)
+		{
+			registrar();
+		}
+
+		private void registrar()
 		{
 			if (currentMesa.Ocupada == false)
 				return;
 			totaliza = true;
 			g.currMesa = currentMesa;
 			g.SetMesa(this.currentMesa);
-			botonera.Cambia();
+			botonera.Cambia(this.currentMesa);
 			totaliza = false;
-			//((Botonera)ctrl).Li
-		
-			//((Botonera)Parent.Parent.Controls.Find("botonera", true).carga
-			//((Botonera)ctrl).Carga(currentMesa.Siglas,0);
 			this.SendToBack();
 		}
 
@@ -260,6 +270,12 @@ namespace AurumRest
 		private void flowLayoutPanel2_Enter(object sender, EventArgs e)
 		{
 			
+		}
+
+		private void listBox1_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if (e.KeyChar.ToString().ToUpper() == "V")
+			{ ViewTable(); }
 		}
 	}
 }

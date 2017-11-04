@@ -109,7 +109,7 @@ namespace AurumBusiness.Controllers
 						pac.Pesa = x.pesa;
 						pac.Activo = x.activo;
 						//db.Categorias.Attach(pac);
-						db.Entry(pac).State = EntityState.Modified;
+						db.Entry(pac).State = System.Data.Entity.EntityState.Modified;
 						db.SaveChanges();
 					}
 

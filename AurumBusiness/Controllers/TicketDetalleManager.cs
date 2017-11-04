@@ -78,8 +78,8 @@ namespace AurumBusiness.Controllers
 					Nota = x.Nota,
 					Notas = x.Notas,
 					Nombre = x.Nombre,
-					Origen=x.Origen
-					
+					Origen=x.Origen,
+					Cuenta=x.Cuenta
 				};
 				
 				db.TicketDetalle.Add(item);
@@ -115,14 +115,18 @@ namespace AurumBusiness.Controllers
 				}
 			}
 		}
-		public void Delete(string mesa)
+		public void Delete(string mesaStr)
 		{
 			using (var db = new Data())
 			{
 
-				var query = db.TicketDetalle.Where(x => x.Mesa.TrimEnd() == mesa.TrimEnd()).ToList();
-				db.TicketDetalle.RemoveRange(query);
+				var query = db.TicketDetalle.Where(x => x.Mesa.TrimEnd() == mesaStr).ToList();
+				foreach (TicketDetalle d in query)
+				{
+					db.TicketDetalle.Remove(d);
+				}
 				db.SaveChanges();
+
 			}
 			
 		}
@@ -162,6 +166,7 @@ namespace AurumBusiness.Controllers
 					pac.Mesa = x.Mesa;
 					pac.Nombre = x.Nombre;
 					pac.Origen = x.Origen;
+					pac.Cuenta = x.Cuenta;
 					db.Entry(pac).State = EntityState.Modified;
 					db.SaveChanges();
 					

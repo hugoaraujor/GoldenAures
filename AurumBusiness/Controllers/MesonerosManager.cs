@@ -79,8 +79,15 @@ namespace AurumBusiness.Controllers
 			{
 				cli = (from x in db.Mesoneros where x.Idmesonero== meseroid select x).SingleOrDefault();
 			}
-			
-			
+
+			if (cli == null)
+			{
+				cli = new Mesonero();
+				cli.Idmesonero =0;
+				cli.Nombre = "NO ESPECIFICADO";
+				cli.Puntos = 0;
+				cli.Sistema = false;
+			 }
 			return cli;
 		}
 

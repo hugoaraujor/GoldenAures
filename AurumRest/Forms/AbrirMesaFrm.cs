@@ -16,6 +16,7 @@ namespace AurumRest
 	{
 		public AbrirMesaView abrirmesaResults = new AbrirMesaView();
 		MesonerosManager MeseroManager = new MesonerosManager();
+
 		public AbrirMesaFrm()
 		{
 			InitializeComponent();
@@ -36,6 +37,7 @@ namespace AurumRest
 
 		private void button2_Click(object sender, EventArgs e)
 		{
+			DialogResult = DialogResult.Cancel;
 			this.Close();
 
 		}
@@ -52,6 +54,9 @@ namespace AurumRest
 				abrirmesaResults.mesonero = MeseroManager.getMesero((int)comboBox1.SelectedValue);
 				abrirmesaResults.Fecha = DateTime.Now;
 				abrirmesaResults.personas = (int)numericUpDown1.Value;
+				abrirmesaResults.multiple = checkBox1.Checked;
+				
+			DialogResult = DialogResult.OK;
 				this.Close();
 			}
 			

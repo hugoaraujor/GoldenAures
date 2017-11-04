@@ -18,6 +18,7 @@ namespace AurumRest
 		string  Facturar( ProcTicket ticket);
 		void ImprimeReporteGerencial( List<string> Lista);
 		bool isAnulada(string invoiceNo="");
+		int estaConectada();
 	}
 
 	

@@ -33,6 +33,7 @@ namespace AurumData
 		private string notas;
 		private string origen;
 		private int ticket;
+		private int cuenta;
 
 		public TicketDetalle()
 	    {
@@ -59,5 +60,6 @@ namespace AurumData
 		public int Id { get => id; set => id = value; }
 		public string Modificadores { get => modificadores; set => modificadores = value; }
 		public string Origen { get => origen; set => origen = value; }
+		public int Cuenta { get => cuenta; set => cuenta = value; }
 	}
 }

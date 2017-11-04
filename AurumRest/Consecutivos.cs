@@ -10,12 +10,14 @@ namespace AurumRest
 	{
 		public static IniFile MyInis = new IniFile(@"c:\corinto\Aurum.ini");
 		public int getTicket()
-		{ int t;
+		{
+			int t;
 			try
 			{
 				t = Convert.ToInt32(MyInis.Read("Consecutivos", "Ticket"));
 			}
-			catch{
+			catch
+			{
 				MyInis.Write("Consecutivos", "Ticket", "0");
 				t = Convert.ToInt32(MyInis.Read("Consecutivos", "Ticket"));
 			}
@@ -24,7 +26,7 @@ namespace AurumRest
 		}
 		public string getUltFactura()
 		{
-			string  t;
+			string t;
 			try
 			{
 				t = MyInis.Read("Consecutivos", "Factura");
@@ -32,7 +34,7 @@ namespace AurumRest
 			catch
 			{
 				MyInis.Write("Consecutivos", "Factura", "0");
-				t =MyInis.Read("Consecutivos", "Factura");
+				t = MyInis.Read("Consecutivos", "Factura");
 			}
 			//Global.Instancia.ticket=t;
 			return t;
@@ -56,14 +58,14 @@ namespace AurumRest
 		}
 		public FontType getFont()
 		{
-						FontType f = new FontType();
+			FontType f = new FontType();
 			int t;
 			try
 			{
-				
-				f.Familia =MyInis.Read("Botones", "FontType");
+
+				f.Familia = MyInis.Read("Botones", "FontType");
 				f.Tamaño = Convert.ToInt16(MyInis.Read("Botones", "TamanoLetra"));
-				f.color =System.Drawing.Color.FromName(MyInis.Read("Botones", "ColorTexto")); 
+				f.color = System.Drawing.Color.FromName(MyInis.Read("Botones", "ColorTexto"));
 			}
 			catch
 			{
@@ -80,20 +82,20 @@ namespace AurumRest
 		}
 		public string getIva(Ivatipo tipo)
 		{
-			string ivastr="";
-		
+			string ivastr = "";
+
 			try
 			{
 
-			ivastr= MyInis.Read("Iva", tipo.ToString());
-				
+				ivastr = MyInis.Read("Iva", tipo.ToString());
+
 			}
 			catch
 			{
 				MyInis.Write("Iva", "General", "12");
 				MyInis.Write("Iva", "Reducido", "08");
 				MyInis.Write("Iva", "Ampliado", "22");
-				ivastr = MyInis.Read("Iva", Ivatipo.Ampliado.ToString()); 
+				ivastr = MyInis.Read("Iva", Ivatipo.Ampliado.ToString());
 
 			}
 			//Global.Instancia.ticket=t;
@@ -102,14 +104,14 @@ namespace AurumRest
 		public int newTicket()
 		{
 			int t;
-			t=getTicket();
+			t = getTicket();
 			t++;
 			return t;
 		}
 		public void SaveTicket(int n)
 		{
 			int t = getTicket();
-			MyInis.Write("Consecutivos", "Ticket",n.ToString());
+			MyInis.Write("Consecutivos", "Ticket", n.ToString());
 			//Global.Instancia.ticket = t;
 
 		}
@@ -119,7 +121,7 @@ namespace AurumRest
 			{
 				MyInis.Write("Consecutivos", "Factura", fact);
 			}
-			
+
 		}
 	}
 }

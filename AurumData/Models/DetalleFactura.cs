@@ -18,7 +18,7 @@ namespace AurumData
 		private string factura;
 		[StringLength(100)]
 		private string  nota;
-		private string mesa;
+
 		public DetalleFactura()
 		{
 	
@@ -33,6 +33,6 @@ namespace AurumData
 		public decimal Cant { get => cant; set => cant = value; }
 		public string Factura { get => factura; set => factura = value; }
 		public string Nota { get => nota; set => nota = value; }
-		public string Mesa { get => mesa; set => mesa = value; }
+
 	}
 }

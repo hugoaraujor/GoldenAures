@@ -20,6 +20,7 @@ namespace AurumRest
 			servicio = 0;
 			total = 0;
 			factura = "0";
+			 
 	}
 
 

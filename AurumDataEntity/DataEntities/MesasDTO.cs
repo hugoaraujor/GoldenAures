@@ -17,5 +17,7 @@ namespace AurumDataEntity
 		public int? idocupante { get; set; }
 		public int Area { get; set; }
 		public EstadosMesa Estado { get; set; }
+		public bool MultiplesCuentas { get; set; }
+		public int Personas { get; set; }
 	}
 }

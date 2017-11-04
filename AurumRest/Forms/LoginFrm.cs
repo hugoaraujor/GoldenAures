@@ -29,7 +29,7 @@ namespace AurumRest
 
 		private void button2_Click(object sender, EventArgs e)
 		{
-		
+			Global g = new Global();
 
 			var axlogged=um.LoginUsuarios(this.comboBox1.Text, textBox2.Text);
 			if (!(axlogged))
@@ -45,7 +45,7 @@ namespace AurumRest
 			}
 			else
 			{
-				Global.Instancia.GetUser(um.GetUsuario(this.comboBox1.Text, textBox2.Text));
+				g.GetUser(um.GetUsuario(this.comboBox1.Text, textBox2.Text));
 				label5.Visible = false;
 				this.Hide();
 				MainFrm mf=new MainFrm();

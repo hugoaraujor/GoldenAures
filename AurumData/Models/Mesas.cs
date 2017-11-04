@@ -20,11 +20,15 @@ namespace AurumData
 		private int?  idocupante;
 		private int area;
 		private EstadosMesa estado;
-
+		private int personas;
+		private bool multiplesCuentas;
 		public Mesa()
 		{
 			siglas = "0";
 			Idmesonero = 0;
+			idocupante = 0;
+			ocupada = false;
+			estado = EstadosMesa.Disponible;
 		}
 
 		[Key]
@@ -41,5 +45,7 @@ namespace AurumData
 		public  EstadosMesa Estado{ get => estado; set => estado= value; }
 		public int? Idmesonero { get => idmesonero; set => idmesonero = value; }
 		public int? Idocupante { get => idocupante; set => idocupante = value; }
+		public bool MultiplesCuentas { get => multiplesCuentas; set => multiplesCuentas = value; }
+		public int Personas { get => personas; set => personas = value; }
 	}
 }

@@ -33,9 +33,7 @@
 			this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.label4 = new System.Windows.Forms.Label();
-			this.button9 = new System.Windows.Forms.Button();
 			this.button7 = new System.Windows.Forms.Button();
-			this.button8 = new System.Windows.Forms.Button();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
@@ -46,6 +44,8 @@
 			this.button3 = new System.Windows.Forms.Button();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
+			this.button9 = new System.Windows.Forms.Button();
+			this.button8 = new System.Windows.Forms.Button();
 			this.flowLayoutPanel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -102,17 +102,6 @@
 			this.label4.TabIndex = 13;
 			this.label4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
 			// 
-			// button9
-			// 
-			this.button9.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button9.BackgroundImage")));
-			this.button9.Location = new System.Drawing.Point(6, 157);
-			this.button9.Name = "button9";
-			this.button9.Size = new System.Drawing.Size(27, 42);
-			this.button9.TabIndex = 3;
-			this.button9.Text = "button9";
-			this.button9.UseVisualStyleBackColor = true;
-			this.button9.Visible = false;
-			// 
 			// button7
 			// 
 			this.button7.BackColor = System.Drawing.Color.SteelBlue;
@@ -123,20 +112,9 @@
 			this.button7.Name = "button7";
 			this.button7.Size = new System.Drawing.Size(111, 46);
 			this.button7.TabIndex = 12;
-			this.button7.Text = "F2 - Ver";
+			this.button7.Text = "&Ver";
 			this.button7.UseVisualStyleBackColor = false;
 			this.button7.Click += new System.EventHandler(this.button7_Click);
-			// 
-			// button8
-			// 
-			this.button8.BackgroundImage = global::AurumRest.Properties.Resources.mesav1;
-			this.button8.Location = new System.Drawing.Point(3, 205);
-			this.button8.Name = "button8";
-			this.button8.Size = new System.Drawing.Size(30, 36);
-			this.button8.TabIndex = 2;
-			this.button8.Text = "button8";
-			this.button8.UseVisualStyleBackColor = true;
-			this.button8.Visible = false;
 			// 
 			// label3
 			// 
@@ -186,6 +164,7 @@
 			this.listBox1.Size = new System.Drawing.Size(224, 160);
 			this.listBox1.TabIndex = 8;
 			this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+			this.listBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.listBox1_KeyPress);
 			// 
 			// button6
 			// 
@@ -269,6 +248,29 @@
 			this.button1.Text = "Venta Rápida";
 			this.button1.UseVisualStyleBackColor = false;
 			this.button1.Click += new System.EventHandler(this.button1_Click);
+			// 
+			// button9
+			// 
+			this.button9.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button9.BackgroundImage")));
+			this.button9.Image = global::AurumRest.Properties.Resources._27541;
+			this.button9.Location = new System.Drawing.Point(0, 671);
+			this.button9.Name = "button9";
+			this.button9.Size = new System.Drawing.Size(27, 40);
+			this.button9.TabIndex = 3;
+			this.button9.Text = "button9";
+			this.button9.UseVisualStyleBackColor = true;
+			this.button9.Visible = false;
+			// 
+			// button8
+			// 
+			this.button8.BackgroundImage = global::AurumRest.Properties.Resources.mesav1;
+			this.button8.Location = new System.Drawing.Point(33, 671);
+			this.button8.Name = "button8";
+			this.button8.Size = new System.Drawing.Size(30, 36);
+			this.button8.TabIndex = 2;
+			this.button8.Text = "button8";
+			this.button8.UseVisualStyleBackColor = true;
+			this.button8.Visible = false;
 			// 
 			// DiagramaMesas
 			// 

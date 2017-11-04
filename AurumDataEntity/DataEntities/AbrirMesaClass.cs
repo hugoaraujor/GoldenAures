@@ -12,7 +12,7 @@ namespace AurumDataEntity.DataEntities
 		public Mesonero mesonero { get; set; }
 		public DateTime Fecha { get; set; }
 		public int personas   { get; set; } 
-
+		public bool multiple { get; set; }
 
 	}
 }

@@ -31,6 +31,7 @@ namespace AurumRest
 
 			MesonerosManager MeseroMngr = new MesonerosManager();
 			var mesa = MesaMngr.GetMesa(mesas);
+			labelMesa.Text = mesa.Siglas;
 			label4.Text = mesa.Hora.ToString();
 			var mesero = MeseroMngr.getMesero((int)mesa.Idmesonero);
 			label3.Text = mesero.Nombre;

@@ -29,7 +29,7 @@
 		private void InitializeComponent()
 		{
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
-			this.textoBoxp19 = new AurumRest.TextoBoxp();
+			this.txtMontoPago = new AurumRest.TextoBoxp();
 			this.button2 = new System.Windows.Forms.Button();
 			this.comboBox3 = new System.Windows.Forms.ComboBox();
 			this.label1 = new System.Windows.Forms.Label();
@@ -54,23 +54,23 @@
 			this.comboBox1.SelectedValueChanged += new System.EventHandler(this.comboBox1_Leave);
 			this.comboBox1.Leave += new System.EventHandler(this.comboBox1_Leave);
 			// 
-			// textoBoxp19
+			// txtMontoPago
 			// 
-			this.textoBoxp19.Entry = null;
-			this.textoBoxp19.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textoBoxp19.ForeColor = System.Drawing.Color.Black;
-			this.textoBoxp19.IsCode = false;
-			this.textoBoxp19.IsDecimal = true;
-			this.textoBoxp19.IsInteger = false;
-			this.textoBoxp19.IsPercent = false;
-			this.textoBoxp19.Location = new System.Drawing.Point(455, 3);
-			this.textoBoxp19.Name = "textoBoxp19";
-			this.textoBoxp19.Size = new System.Drawing.Size(157, 39);
-			this.textoBoxp19.TabIndex = 3;
-			this.textoBoxp19.Text = "0,00";
-			this.textoBoxp19.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.textoBoxp19.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textoBoxp19_KeyDown);
-			this.textoBoxp19.Leave += new System.EventHandler(this.textoBoxp19_Leave);
+			this.txtMontoPago.Entry = null;
+			this.txtMontoPago.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtMontoPago.ForeColor = System.Drawing.Color.Black;
+			this.txtMontoPago.IsCode = false;
+			this.txtMontoPago.IsDecimal = true;
+			this.txtMontoPago.IsInteger = false;
+			this.txtMontoPago.IsPercent = false;
+			this.txtMontoPago.Location = new System.Drawing.Point(455, 3);
+			this.txtMontoPago.Name = "txtMontoPago";
+			this.txtMontoPago.Size = new System.Drawing.Size(157, 39);
+			this.txtMontoPago.TabIndex = 3;
+			this.txtMontoPago.Text = "0,00";
+			this.txtMontoPago.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.txtMontoPago.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textoBoxp19_KeyDown);
+			this.txtMontoPago.Leave += new System.EventHandler(this.textoBoxp19_Leave);
 			// 
 			// button2
 			// 
@@ -116,7 +116,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.comboBox3);
 			this.Controls.Add(this.comboBox1);
-			this.Controls.Add(this.textoBoxp19);
+			this.Controls.Add(this.txtMontoPago);
 			this.Controls.Add(this.button2);
 			this.Controls.Add(this.label1);
 			this.Name = "PagoCtrl";
@@ -128,7 +128,7 @@
 
 		#endregion
 		public System.Windows.Forms.ComboBox comboBox1;
-		public TextoBoxp textoBoxp19;
+		public TextoBoxp txtMontoPago;
 		public System.Windows.Forms.Button button2;
 		public System.Windows.Forms.ComboBox comboBox3;
 		private System.Windows.Forms.Label label1;

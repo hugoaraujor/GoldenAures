@@ -15,7 +15,7 @@ namespace AurumData
 		// Si desea tener como destino una base de datos y/o un proveedor de base de datos diferente, 
 		// modifique la cadena de conexión 'Data'  en el archivo de configuración de la aplicación.
 		public Data()
-			: base("name=Data")
+			: base("name=Local")
 		{
 		}
 

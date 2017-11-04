@@ -12,8 +12,10 @@ using AurumBusiness.Controllers;
 
 namespace AurumRest
 {
+
 	public partial class CierreZFrm : Form
 	{
+		public FacturasManager fm = new FacturasManager();
 		List<string> reporte = new List<string>();
 		public Decimal[] total = new Decimal[7];
 		public Cierreenum tipo = new Cierreenum();
@@ -25,7 +27,7 @@ namespace AurumRest
 
 		private void buttonrealizar_Click(object sender, EventArgs e)
 		{
-			FacturasManager fm = new FacturasManager();
+		
 			var FacturasPendientesdeCierre = Cargadatos();
 			if (FacturasPendientesdeCierre.Count == 0)
 			{ errorBar1.Mensaje = "No Cierres pendientes";
@@ -74,9 +76,14 @@ namespace AurumRest
 
 		private List<AurumData.Factura> Cargadatos()
 		{
+			List<AurumData.Factura> query = null;
 			using (var db = new Data())
-			{
-				var query = db.Facturas.Where(f => f.Cierrez==null).Select(f => f).ToList();
+			{ if (tipo == Cierreenum.Z)
+
+				{  query = db.Facturas.Where(f => f.Cierrez == "0" || f.Cierrez == null).Select(f => f).ToList(); }
+				else
+				{  query = db.Facturas.Where(f => f.Cierrex == "0" || f.Cierrex == null).Select(f => f).ToList(); }
+
 				return query;
 			}
 
@@ -125,8 +132,8 @@ namespace AurumRest
 
 			Totales(ref total);
 			ParametrosManager p = new ParametrosManager();
-
-			Seriallabel.Text = Global.Instancia.GetParametros().Serial;
+			Global g = new Global();
+			Seriallabel.Text = g.GetParametros().Serial;
 			//if (this.txttotal.Text == "0")
 				//return;
 			DialogResult resp = MessageBox.Show("Esta seguro de efectuar el Cierre Z?", "Confirmación", MessageBoxButtons.YesNo);

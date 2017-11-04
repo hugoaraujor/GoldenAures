@@ -142,7 +142,7 @@ namespace AurumBusiness.Controllers
 						pac.nombre = x.nombre;
 
 					}
-					db.Entry(pac).State = EntityState.Modified;
+					db.Entry(pac).State = System.Data.Entity.EntityState.Modified;
 					db.SaveChanges();
 				}
 			}

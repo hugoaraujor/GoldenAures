@@ -33,11 +33,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EFUtil.Core, Version=0.9.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.Extras.0.9.4.0\lib\net40\EFUtil.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EFUtil.Repository, Version=0.9.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.Extras.0.9.4.0\lib\net40\EFUtil.Repository.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0-beta1\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0-beta1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Interop.JRO">
       <HintPath>D:\CorintoR200818112011\CorintoR2008\Corinto\bin\Debug\Interop.JRO.dll</HintPath>
@@ -47,6 +53,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
@@ -85,6 +92,7 @@
     <Compile Include="Controllers\itemsOrderManager.cs" />
     <Compile Include="Controllers\MenuManager.cs" />
     <Compile Include="Controllers\MesonerosManager.cs" />
+    <Compile Include="Controllers\MyException.cs" />
     <Compile Include="Controllers\PagoManager.cs" />
     <Compile Include="Controllers\ParametrosManager.cs" />
     <Compile Include="Class1.cs" />
@@ -125,7 +133,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Controllers\DetalleMesaFrm.resx">
@@ -137,6 +144,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Resources\left.png" />
   </ItemGroup>
   <ItemGroup>

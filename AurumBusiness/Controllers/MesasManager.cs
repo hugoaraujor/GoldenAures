@@ -90,14 +90,15 @@ namespace AurumBusiness.Controllers
 					var pac = (from p in db.Mesas where p.Idmesa == Editedclass.Idmesa select p).FirstOrDefault();
 					if (pac != null)
 					{
-						AurumData.EstadosMesa estado = (AurumData.EstadosMesa)x.Estado;
-						pac.Siglas = x.Siglas;
+						
+						//pac.Siglas = x.Siglas;
 						pac.Ocupada = x.Ocupada;
-						pac.Hora = x.Hora;
+						pac.Hora = DateTime.Now;
 						pac.Idmesonero = x.Idmesonero;
 						pac.Idocupante = x.Idocupante;
 						pac.Area = x.Area;
-						pac.Estado = estado;
+						pac.Estado = x.Estado;
+						pac.MultiplesCuentas = x.MultiplesCuentas;
 						db.SaveChanges();
 					}
 
@@ -112,6 +113,9 @@ namespace AurumBusiness.Controllers
 			currentMesa.Hora = am.Fecha;
 			currentMesa.Idmesonero = am.mesonero.Idmesonero;
 			currentMesa.Estado = EstadosMesa.Ocupada;
+			currentMesa.MultiplesCuentas = am.multiple;
+			currentMesa.Personas = am.personas;
+
 			Edit(currentMesa);
 		}
 		public Mesa GetMesa(string mesastr)
@@ -120,7 +124,7 @@ namespace AurumBusiness.Controllers
 			Mesa resp = new Mesa();
 			using (var db = new Data())
 			{
-				Mesa Edo = (from x in db.Mesas where x.Siglas == mesastr select x).FirstOrDefault();
+				var Edo = (from x in db.Mesas where x.Siglas == mesastr select x).FirstOrDefault();
 				if (Edo != null)
 				{
 					resp = Edo;

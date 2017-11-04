@@ -11,7 +11,9 @@ using AurumData;
 using AurumBusiness.Controllers;
 
 namespace AurumRest
-{
+{/// <summary>
+/// 
+/// </summary>
 	public partial class PagoCtrl : UserControl
 	{ public MontoPago Pago=new MontoPago();
 		public string clase { get; set; }
@@ -29,7 +31,7 @@ namespace AurumRest
 				case "Efectivo":
                     comboBox3.Enabled = false;
 					comboBox3.Text = "";
-					textoBoxp19.Focus();
+					txtMontoPago.Focus();
 					break;
 				case "Débito":
 					comboBox3.DataSource = null;
@@ -65,19 +67,19 @@ namespace AurumRest
 		{
 			this.comboBox1.Text = m.ClasePago.ToString();
 			this.comboBox3.Text = m.Tipo.ToString();
-			this.textoBoxp19.Text =m.Monto.ToString();
+			this.txtMontoPago.Text =m.Monto.ToString();
 		}
 	
 		private void textoBoxp19_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Down)
-				Pago.Monto = Math.Round(Convert.ToDecimal(this.textoBoxp19.Text),2);
+				Pago.Monto = Math.Round(Convert.ToDecimal(this.txtMontoPago.Text),2);
 
 		}
 
 		private void textoBoxp19_Leave(object sender, EventArgs e)
 		{
-			Pago.Monto = Math.Round(Convert.ToDecimal(this.textoBoxp19.Text),2);
+			Pago.Monto = Math.Round(Convert.ToDecimal(this.txtMontoPago.Text),2);
 		}
 
 		private void comboBox1_Leave(object sender, EventArgs e)
@@ -90,10 +92,10 @@ namespace AurumRest
 			confirmed = true;
 			clase = comboBox1.Text;
 			var pagado = Forma.TotalesPago.pagado;
-			if ((this.textoBoxp19.Text != "") && aplicadescuento())
+			if ((this.txtMontoPago.Text != "") && aplicadescuento())
 			{
 				Forma.displaytotales();
-				this.textoBoxp19.Text = string.Format("{0:0.00}", ((TotalForm)Forma).TotalesPago.resta);
+				this.txtMontoPago.Text = string.Format("{0:0.00}", ((TotalForm)Forma).TotalesPago.resta);
 				Forma.labelResta.Text = string.Format("{0:0.00}", Forma.TotalesPago.resta - pagado);
 
 			}
@@ -122,7 +124,7 @@ namespace AurumRest
 			else
 			{
 				 iva = Ivatipo.General;
-				this.textoBoxp19.Text = string.Format("{0:0.00}", mtotpagar - Forma.TotalesPago.pagado);
+				this.txtMontoPago.Text = string.Format("{0:0.00}", mtotpagar - Forma.TotalesPago.pagado);
 			}
 			Forma.calculaValores(iva, Forma.TotalesPago.descuento);
 			Forma.displaytotales();
@@ -132,7 +134,7 @@ namespace AurumRest
 		{
 			var Forma = Parent.FindForm();
 			label1.BackColor = Color.White;
-				Pago.Monto = Convert.ToDecimal(textoBoxp19.Text);
+				Pago.Monto = Convert.ToDecimal(txtMontoPago.Text);
 				Enum.TryParse(comboBox1.Text, out ClasePago myStatus);
 				Pago.ClasePago = myStatus;
 				Pago.Detalle = this.comboBox3.Text;
@@ -147,12 +149,12 @@ namespace AurumRest
 				button2.Visible = false;
 				this.comboBox1.Enabled = false;
 				this.comboBox3.Enabled = false;
-				textoBoxp19.Enabled = false;
+				txtMontoPago.Enabled = false;
 		}
 
 		private void comboBox3_Leave(object sender, EventArgs e)
 		{
-			textoBoxp19.Focus();
+			txtMontoPago.Focus();
 		}
 	}
 }

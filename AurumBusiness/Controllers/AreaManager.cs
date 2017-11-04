@@ -161,7 +161,7 @@ namespace AurumBusiness.Controllers
 						pac.Mesas = x.Mesas;
 					}
 					//db.Areas.Attach(pac);
-					db.Entry(pac).State = EntityState.Modified;
+					db.Entry(pac).State = System.Data.Entity.EntityState.Modified;
 					db.SaveChanges();
 				}
 			}
@@ -187,7 +187,7 @@ namespace AurumBusiness.Controllers
 
 						pac.File = filename;
 					}
-					db.Entry(pac).State = EntityState.Modified;
+					db.Entry(pac).State = System.Data.Entity.EntityState.Modified;
 					db.SaveChanges();
 				}
 			}

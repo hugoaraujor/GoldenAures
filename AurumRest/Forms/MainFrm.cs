@@ -15,6 +15,7 @@ namespace AurumRest
 	{  public static Default defaultValues=new Default();
 		public static string IMPRESORAXDEFECTO="BEMATECH";
 		ProductoDTO currentPart = new ProductoDTO();
+		Global g = new Global();
 		public MainFrm()
 		{
 			InitializeComponent();
@@ -24,7 +25,7 @@ namespace AurumRest
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			MessageBox.Show(Global.Instancia.Usuario().UserName);
+			MessageBox.Show(g.Usuario().UserName);
 		}
 
 		private void areaToolStripMenuItem_Click(object sender, EventArgs e)

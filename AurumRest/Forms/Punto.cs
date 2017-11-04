@@ -49,7 +49,7 @@ namespace AurumRest
 
 		}
 
-		
+	
 	private void Punto_Load(object sender, EventArgs e)
 		{
 			var db = new Data();
@@ -79,7 +79,14 @@ namespace AurumRest
 		{
 			this.Close();
 		}
-		
-		
+
+		private void Punto_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			int i;
+			if (int.TryParse(e.KeyChar.ToString(), out i))
+			{
+				MessageBox.Show(i.ToString());
+			}
+		}
 	}
 }

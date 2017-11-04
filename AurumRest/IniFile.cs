@@ -12,10 +12,10 @@ namespace AurumRest
 	{
 		public string Path;
 
-		[DllImport("kernel32")]
+		[DllImport("kernel32.dll")]
 		private static extern long WritePrivateProfileString(string Section, string Key, string Value, string FilePath);
 
-		[DllImport("kernel32")]
+		[DllImport("kernel32.dll")]
 		private static extern int GetPrivateProfileString(string Section, string Key, string Default, StringBuilder RetVal, int Size, string FilePath);
 
 		public IniFile(string IniPath)

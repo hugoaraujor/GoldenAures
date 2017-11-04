@@ -39,7 +39,8 @@ namespace AurumRest
 		private void button1_Click(object sender, EventArgs e)
 		{
 			AperturasManager ap = new AperturasManager();
-			ap.InsertClase(new AperturaDTO { Fecha = DateTime.Now, Monto = Convert.ToDecimal(textoBoxp1.Text), Turno = Convert.ToInt16(comboBox1.SelectedValue), userId = Global.Instancia.Usuario().Iduser, cerrada=false, Idapertura=0 });
+			Global g = new Global();
+			ap.InsertClase(new AperturaDTO { Fecha = DateTime.Now, Monto = Convert.ToDecimal(textoBoxp1.Text), Turno = Convert.ToInt16(comboBox1.SelectedValue), userId =g.Usuario().Iduser, cerrada=false, Idapertura=0 });
 			IPrinterFIOperaciones IP = new ImpresionBematech();
 			IP.AbrirCaja(textoBoxp1.Text);
 			this.Close();

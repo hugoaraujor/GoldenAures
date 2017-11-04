@@ -13,6 +13,7 @@ namespace AurumRest
 		{
 			lista = new List<TicketDetalle>();
 			totales = new TotalapagarView();
+			ticketNro = 0;
 		}
 		public int ticketNro { get; set; }
 		public	List<TicketDetalle> lista { get; set; }

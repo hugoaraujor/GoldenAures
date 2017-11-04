@@ -2,11 +2,14 @@
 using AurumData;
 using System;
 using FiscalPrinterBematech;
+using AurumBusiness.BAL;
+using System.Linq;
 
 namespace AurumRest
 {
-	class FacturaBematech : Factura
+	public class FacturaBematech : Factura
 	{
+	
 		public override void Header()
 		{
 			string NumeroDoc = "";
@@ -14,9 +17,12 @@ namespace AurumRest
 			int ACK = 0;
 			int ST1 = 0;
 			int ST2 = 0;
+
 			int RetornoStatus = BemaFI32.Bematech_FI_RetornoImpresora(ref ACK, ref ST1, ref ST2);
 			if (ACK != 6)
-			{ guardarAnulada(); }
+				{
+			guardarAnulada(); 
+					}
 			BemaFI32.Bematech_FI_AnulaCupon();
 
 
@@ -27,15 +33,19 @@ namespace AurumRest
 		{
 			var prodVendido = lista;
 			Global g = new Global();
-			var imp = g.secuencia.getIva(totales.currentIva);
+			var imp = g.store.getIva(totales.currentIva);
 			foreach (TicketDetalle t in prodVendido)
 			{
 				var precio = String.Format("{0:000000.00}", t.Neto).Replace(".", ""); ;
 				var cant = string.Format("{0:0000}", t.Cant);
 				var impFormatted = String.Format("{0:00.00}", Convert.ToDecimal(imp)).Replace(".", "");
-				//var impFormatted = String.Format("{0:00.00}", Convert.ToDecimal(t.iIva)).Replace(".", "");
 				var h = BemaFI32.Bematech_FI_VendeArticulo("", t.Nombre, impFormatted, "I", cant, 2, precio, "$", "0000");
 			}
+			if (!esdeLlevar())
+			{ 
+			var serv = string.Format("{0:000000.00}", totales.servicio).Replace(".", ""); ;
+			var h = BemaFI32.Bematech_FI_VendeArticulo("", "10% Servicio.", "II", "I", "0001", 2, serv, "%", "0000");
+		     }
 		}
 		public override void Pagos()
 		{
@@ -46,23 +56,26 @@ namespace AurumRest
 		}
 		public   override void CierraFactura()
 		{
-			var aux=Global.Instancia.currMesa;
-			var mesaStr = Global.Instancia.currMesa.Siglas;
+			var mesaStr = totales.mesa.Siglas;
 			int resp=0;
-			if ((mesaStr != "0") && (mesaStr.IndexOf("LL") > -1))
-			{ resp = BemaFI32.Bematech_FI_FinalizarCierreCupon(mesaStr + " PARA LLEVAR." + " Gracias por su compra."); }
-
-			if ((mesaStr != "0") && (mesaStr.IndexOf("LL") == -1))
+			if ((mesaStr != "0") && esdeLlevar())
+			{
+				resp = BemaFI32.Bematech_FI_FinalizarCierreCupon(mesaStr + " PARA LLEVAR." + " Gracias por su compra.");
+			}
+			if ((mesaStr != "0") && (!esdeLlevar()))
 			{
 				MesonerosManager MCtrller = new MesonerosManager();
-				var atiende = MCtrller.getMesero((int)aux.Idmesonero).Nombre;
+				var aux = totales.mesa.Idmesonero;
+				var atiende = MCtrller.getMesero((int)aux).Nombre;
+
 				resp = BemaFI32.Bematech_FI_FinalizarCierreCupon("Mesa:" + mesaStr + ".Atiende:" + atiende);
 			}
 			if (mesaStr == "0")
 			{
 				resp = BemaFI32.Bematech_FI_FinalizarCierreCupon("VENTA RAPIDA");
 			}
-			Console.WriteLine("ya cerro");
+				
+
 		
 
 		}
@@ -87,23 +100,29 @@ namespace AurumRest
 			{  var n=BemaFI32.Bematech_FI_IniciaCierreCupon("D", "$", "0000");}
 			
 		}
-		
 
+	
+		
 		private void guardarAnulada()
 		{
-			Console.WriteLine("Guarda Anulada");
 			FacturasManager fm = new FacturasManager();
-			var nroultfactura = Global.Instancia.secuencia.getUltFactura();
-			var nrosigultfactura = (Convert.ToInt16(nroultfactura)+1).ToString("D6");
-			var siexiste = fm.Existe(nrosigultfactura);
-			if (siexiste)
+			Global g = new Global();
+		    Console.WriteLine("Guarda Anulada");
+
+			string  nroultfactura = g.store.getUltFactura();
+			string  nrosigultfactura = (Convert.ToInt16(nroultfactura)+1).ToString("D6");
+			bool siexiste = fm.ExisteFact(nrosigultfactura.ToString());
+			if (siexiste==true)
 			{
-				fm.Delete(nroultfactura);
-				fm.Insert(new AurumDataEntity.FacturaDTO { Anulada = true, ClienteID = 0, Montoneto = 0, Descuento = 0, Total = 0, Tasa = 0, Equipo = Global.Instancia.equipo, Caja = "", Facturanro = nrosigultfactura, Mesa = "0", Moneda = "", Serial = Global.Instancia.GetParametros().Serial, Sirve = 0, Userid = 0, Nota="" });
+		
+				//fm.Delete(nroultfactura);
+				var Fact=fm.GetFactura(nrosigultfactura);
+
+				fm.Edit(new AurumDataEntity.FacturaDTO { Exento = 0, Anulada = true, ClienteID = 0, Montoneto = 0, Descuento = 0, Total = 0, Tasa = 0, Equipo = g.equipo, Caja = "", Facturanro = nrosigultfactura, Mesa = "0", Moneda = "", Serial = g.GetParametros().Serial, Sirve = 0, Userid = 0, Nota="" , Cierrex="0", Cierrez="0", Montoiva=0, Fecha=Convert.ToDateTime(DateTime.Now)});
 			}
 			else
 			{
-				fm.Insert(new AurumDataEntity.FacturaDTO { Anulada = true, ClienteID = 0, Montoneto = 0, Descuento = 0, Total = 0, Tasa = 0, Equipo = Global.Instancia.equipo, Caja = "", Facturanro = nrosigultfactura, Mesa = "0", Moneda = "", Serial = Global.Instancia.GetParametros().Serial, Sirve = 0, Userid = 0, Nota = "" });
+				fm.Insert(new AurumDataEntity.FacturaDTO { Anulada = true, ClienteID = 0, Montoneto = 0, Descuento = 0, Total = 0, Tasa = 0, Equipo =g.equipo, Caja = "", Facturanro = nrosigultfactura, Mesa = "0", Moneda = "", Serial =g.GetParametros().Serial, Sirve = 0, Userid = 0, Nota = "",Cierrex="0",Cierrez="0", Montoiva=0,Id=0, Fecha = Convert.ToDateTime(DateTime.Now) });
 			}
 		}
 		
@@ -137,9 +156,11 @@ namespace AurumRest
 		}
 		public override int GetLast(ref string NumeroDoc)
 		{
-			int iretorno = BemaFI32.Bematech_FI_NumeroComprobanteFiscal(ref NumeroDoc);
-			return iretorno;
-
+			var x = NumeroDoc;
+			//	int iretorno = BemaFI32.Bematech_FI_NumeroComprobanteFiscal(ref x);
+			//return iretorno;
+			NumeroDoc = x;
+			return 0;
 		}
 
 		public bool VerificaRetornoImpresora(string Label, string Contenido, int Retorno, string TituloVentana)
@@ -263,6 +284,12 @@ namespace AurumRest
 			return functionReturnValue;
 		}
 
-
+		public override bool esdeLlevar()
+		{
+			if (totales.mesa.Siglas.Contains("LL") )
+				return true;
+			else
+				return false;
+		}
 	}
 }

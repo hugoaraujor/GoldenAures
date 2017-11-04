@@ -175,7 +175,7 @@ namespace AurumBusiness.Controllers
 						pac.IdProducto = x.IdProducto;
 						db.Productos.Attach(pac);
 						
-						db.Entry(pac).State = EntityState.Modified;
+						db.Entry(pac).State = System.Data.Entity.EntityState.Modified;
 						//var entry = db.Entry(updatedUser);
 						//entry.State = EntityState.Modified;
 

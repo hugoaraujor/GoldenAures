@@ -44,8 +44,8 @@ namespace AurumRest
 		
 		public void calculaValores(Ivatipo iva, Decimal descuento = 0)
 		{
-			var ivap = g.secuencia.getIva(iva);
-			var ivag = g.secuencia.getIva(Ivatipo.General);
+			var ivap = g.store.getIva(iva);
+			var ivag = g.store.getIva(Ivatipo.General);
 
 			TotalesPago.IvaPercent = Convert.ToDecimal(ivap);
 			TotalesPago.totalNeto = (TotalesPago.totalNeto);
@@ -213,7 +213,7 @@ namespace AurumRest
 		}
 		private void button3_Click_1(object sender, EventArgs e)
 		{
-			 //impresoraconectada=BemaFI32.Bematech_FI_VerificaImpresoraPrendida();
+			 impresoraconectada=BemaFI32.Bematech_FI_VerificaImpresoraPrendida();
 			 this.Close();
 			  
 
